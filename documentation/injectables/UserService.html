@@ -188,12 +188,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, bcrypt: <a href="../classes/BcryptService.html" target="_self">BcryptService</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, bcrypt: <a href="../classes/BcryptService.html" target="_self">BcryptService</a>, commandBus: CommandBus)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/user/http/services/user.service.ts:9</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/user/http/services/user.service.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -227,6 +227,18 @@
                                                   
                                                         <td>
                                                                         <code><a href="../classes/BcryptService.html" target="_self" >BcryptService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>commandBus</td>
+                                                  
+                                                        <td>
+                                                                    <code>CommandBus</code>
                                                         </td>
                                                   
                                                     <td>
@@ -270,8 +282,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="35"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:35</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -350,8 +362,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:68</a></div>
                         </td>
                     </tr>
 
@@ -423,15 +435,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>create(createUserDto: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>create(createUserDto: <a href="../classes/CreateUserRequest.html" target="_self">CreateUserRequest</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="30"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:30</a></div>
                         </td>
                     </tr>
 
@@ -454,7 +466,7 @@
                                         <tr>
                                                 <td>createUserDto</td>
                                             <td>
-                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                            <code><a href="../classes/CreateUserRequest.html" target="_self" >CreateUserRequest</a></code>
                                             </td>
 
                                             <td>
@@ -499,8 +511,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="27"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:27</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="37"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -538,8 +550,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:41</a></div>
                         </td>
                     </tr>
 
@@ -607,8 +619,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="79"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:79</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="89"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:89</a></div>
                         </td>
                     </tr>
 
@@ -676,8 +688,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="69"
-                                    class="link-to-prism">src/user/http/services/user.service.ts:69</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/user/http/services/user.service.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -740,24 +752,34 @@ import { Repository } from &#x27;typeorm&#x27;;
 import { User } from &#x27;../../entities/user.entity&#x27;;
 import { BcryptService } from &#x27;src/authentication/services/bcrypt.service&#x27;;
 import { comparePasswords } from &#x27;src/authentication/http/controllers/authentication.controller&#x27;;
+import { CommandBus } from &#x27;@nestjs/cqrs&#x27;;
+import { CreateUserCommand } from &#x27;src/user/commands/create-user.command&#x27;;
+import { CreateUserRequest } from &#x27;../requests/create-user.request&#x27;;
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository&lt;User&gt;,
-    private readonly bcrypt: BcryptService
+    private readonly bcrypt: BcryptService,
+    private readonly commandBus: CommandBus
   ) {}
 
-  async create(createUserDto: any) {
-    const user &#x3D; this.userRepository.create({
-      username: createUserDto.username,
-      password: createUserDto.password,
-      role: createUserDto.role,
-    });
-    return this.userRepository.save(user);
+  // async create(createUserDto: any) {
+  //   const user &#x3D; this.userRepository.create({
+  //     username: createUserDto.username,
+  //     password: createUserDto.password,
+  //     role: createUserDto.role,
+  //   });
+  //   return this.userRepository.save(user);
+  // }
+
+
+    async create(createUserDto: CreateUserRequest) {
+    // Use the command bus logic for user creation
+    const userdata &#x3D; await this.commandBus.execute(new CreateUserCommand(createUserDto));
+    return userdata;
   }
-  
   
 
   async findAll() {

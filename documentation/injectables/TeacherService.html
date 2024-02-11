@@ -185,7 +185,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/teacher/teacher.service.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/teacher/teacher.service.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -262,8 +262,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/teacher/teacher.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="16"
+                                    class="link-to-prism">src/teacher/teacher.service.ts:16</a></div>
                         </td>
                     </tr>
 
@@ -331,8 +331,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/teacher/teacher.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/teacher/teacher.service.ts:44</a></div>
                         </td>
                     </tr>
 
@@ -370,8 +370,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="44"
-                                    class="link-to-prism">src/teacher/teacher.service.ts:44</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/teacher/teacher.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -439,8 +439,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/teacher/teacher.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/teacher/teacher.service.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -508,8 +508,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/teacher/teacher.service.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/teacher/teacher.service.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -571,6 +571,7 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { Teacher } from &#x27;./entities/teacher.entity&#x27;;
 import { UserService } from &#x27;src/user/http/services/user.service&#x27;;
+import { Role } from &#x27;src/user/types&#x27;;
 
 @Injectable()
 export class TeacherService {
@@ -584,8 +585,10 @@ export class TeacherService {
     const user &#x3D; await this.userService.create({
       username: createTeacherDto.username,
       password: createTeacherDto.password,
-      role: &#x27;teacher&#x27;,
+      role: Role.teacher,
+      
     });
+    console.log(user.raw)
 
     // Create teacher with the user ID
     const teacher &#x3D; this.teacherRepository.create({
@@ -598,8 +601,9 @@ export class TeacherService {
       qualification: createTeacherDto.qualification,
       experience: createTeacherDto.experience,
       email: createTeacherDto.email,
-      user: user, // Assign the user entity
+      user: user.raw[0], // Assign the user entity
     });
+    // console.log(createTeacherDto)
 
     return this.teacherRepository.save(teacher);
   }

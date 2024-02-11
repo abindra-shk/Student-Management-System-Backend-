@@ -150,8 +150,6 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createUser" >createUser</a>
                             </li>
@@ -196,8 +194,6 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>createUser</b></span>
                         <a href="#createUser"><span class="icon ion-ios-link"></span></a>
@@ -215,14 +211,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@UseFilters(new DuplicateUserExceptionFilter())<br />@UseFilters(new CreateUserExceptionFilter())<br />@Post(&#x27;/user&#x27;)<br />@ResponseMessage(&#x27;User created successfully&#x27;)<br /></code>
+                    <code>@Post(&#x27;/user&#x27;)<br />@ResponseMessage(&#x27;User created successfully&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -297,8 +293,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="38"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:38</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="43"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:43</a></div>
                         </td>
                     </tr>
 
@@ -343,8 +339,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -419,8 +415,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -495,8 +491,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:53</a></div>
                         </td>
                     </tr>
 
@@ -576,17 +572,22 @@ export class UserController {
     ) {
   }
 
-  @UseFilters(new DuplicateUserExceptionFilter())
-  @UseFilters(new CreateUserExceptionFilter())
+  // @UseFilters(new DuplicateUserExceptionFilter())
+  // @UseFilters(new CreateUserExceptionFilter())
+  // @Post(&quot;/user&quot;)
+  // @ResponseMessage(&#x27;User created successfully&#x27;)
+  // async createUser(@Body() body: CreateUserRequest) {
+  //   // if (body.role !&#x3D;&#x3D; Role.STAFF_ADMIN ) {
+  //   //   throw new CreateUserException(&#x60;You are not allowed to create ${body.role} user&#x60;);
+  //   // }
+
+  //   const userdata &#x3D; await this.commandBus.execute(new CreateUserCommand(body));
+  //   return userdata;
+  // }
   @Post(&quot;/user&quot;)
   @ResponseMessage(&#x27;User created successfully&#x27;)
   async createUser(@Body() body: CreateUserRequest) {
-    // if (body.role !&#x3D;&#x3D; Role.STAFF_ADMIN ) {
-    //   throw new CreateUserException(&#x60;You are not allowed to create ${body.role} user&#x60;);
-    // }
-
-    const userdata &#x3D; await this.commandBus.execute(new CreateUserCommand(body));
-    return userdata;
+    return this.userService.create(body);
   }
 
   // @Post()
