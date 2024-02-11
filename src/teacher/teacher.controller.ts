@@ -2,12 +2,16 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { TeacherService } from './teacher.service';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { ResponseMessage } from 'src/core/decorators/response.decorator';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('teacher')
+@ApiTags('Teacher')
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) {}
 
   @Post()
+  @ResponseMessage('Teacher created successfully')
   create(@Body() createTeacherDto: any) {
     return this.teacherService.create(createTeacherDto);
   }

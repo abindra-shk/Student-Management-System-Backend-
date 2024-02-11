@@ -1,11 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {
-  appendIdToRequest,
-  appendRequestIdToLogger,
   LoggingInterceptor,
-  morganRequestLogger,
-  morganResponseLogger,
 } from 'nestjs-winston-logger';
 import { ResponseTransformInterceptor } from './core/http/interceptors/response-transform.interceptor';
 import { globalLogger } from './config/globalLogger';
@@ -67,8 +63,8 @@ async function bootstrap() {
   app.enableShutdownHooks();
 
   // app.use(helmet());
-  await app.listen(process.env.APP_PORT || '3300', () => {
-    console.log(`App running at port ${process.env.APP_PORT || '3300'}`);
+  await app.listen(process.env.APP_PORT || '3003', () => {
+    console.log(`App running at port ${process.env.APP_PORT || '3003'}`);
   });
 
 }
