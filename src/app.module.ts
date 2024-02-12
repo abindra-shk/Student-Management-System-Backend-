@@ -25,7 +25,6 @@ import dbconfig from './config/database.config';
         username: 'test',
         password: 'test@1234',
         database: 'testdb',
-        // entities: ['../**/*.entity.{ts,js}'],
         synchronize: true,
         autoLoadEntities: true,
       }

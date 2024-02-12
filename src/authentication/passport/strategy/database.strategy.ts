@@ -29,10 +29,6 @@ export class DatabaseStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException('Invalid username or password supplied');
     }
 
-    // if (!user.confirmedAt) {
-    //   throw new UnauthorizedException('You must accept the invitation before you log in. Please check your email first.');
-    // }
-
     if (await this.bcryptService.verifyCredentials(user, password)) {
       return user;
     }

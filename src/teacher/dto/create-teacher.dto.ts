@@ -13,4 +13,6 @@ export class CreateTeacherDto {
   username: string;
   password: string;
   readonly role: Role;
+  subjects: {subjectName: string; classId: string}[]
+
 }

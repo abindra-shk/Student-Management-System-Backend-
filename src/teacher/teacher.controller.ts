@@ -13,6 +13,7 @@ export class TeacherController {
   @Post()
   @ResponseMessage('Teacher created successfully')
   create(@Body() createTeacherDto: any) {
+    console.log('Creating a teacher...', createTeacherDto); 
     return this.teacherService.create(createTeacherDto);
   }
 
