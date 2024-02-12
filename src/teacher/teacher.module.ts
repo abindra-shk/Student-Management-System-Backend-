@@ -6,9 +6,10 @@ import { Teacher } from './entities/teacher.entity';
 import { UserService } from 'src/user/http/services/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { UserModule } from 'src/user/user.module';
+import { SubjectModule } from 'src/subject/subject.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Teacher,User]),UserModule],
+  imports: [TypeOrmModule.forFeature([Teacher,User]),UserModule,SubjectModule],
   controllers: [TeacherController],
   providers: [TeacherService],
 })

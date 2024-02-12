@@ -77,7 +77,7 @@ export class StudentService {
   async findAll() {
     return this.studentRepository.createQueryBuilder("student").getMany();
   }
-
+  
   async findOne(id: number) {
     return this.studentRepository.findOne({ where: { id: id.toString() } });
   }

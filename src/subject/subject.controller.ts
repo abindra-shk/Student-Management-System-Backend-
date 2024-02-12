@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { SubjectService } from './subject.service';
 import { CreateSubjectDto } from './dto/create-subject.dto';
 import { UpdateSubjectDto } from './dto/update-subject.dto';
@@ -14,7 +14,7 @@ export class SubjectController {
     return this.subjectService.create(createSubjectDto);
   }
 
-  @Post()
+  @Post('all-subjects')
   createAll(@Body() createSubjectDto: CreateSubjectDto[]) {
     return this.subjectService.createAll(createSubjectDto);
   }
@@ -24,10 +24,20 @@ export class SubjectController {
     return this.subjectService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.subjectService.findOne(id);
+  @Get('findBySubjectNameAndClassId')
+  async findBySubjectNameAndClassId(
+    @Query('subjectName') subjectName: string,
+    @Query('classId') classId: string,
+  ) {
+    return this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
   }
+  
+  
+
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.subjectService.findOne(id);
+  // }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSubjectDto: CreateSubjectDto) {

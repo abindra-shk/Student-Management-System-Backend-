@@ -50,8 +50,21 @@ export class SubjectService {
   }
 
   async findAll() {
-    return this.subjectRepository.find();
+    return this.subjectRepository
+    .createQueryBuilder('subject')
+    .leftJoinAndSelect('subject.class', 'class')
+    .getMany();
   }
+
+  async findBySubjectNameAndClassId(subjectName: string, classId: string) {
+    return this.subjectRepository
+      .createQueryBuilder('subject')
+      .where('subject.subjectName = :subjectName', { subjectName })
+      .andWhere('subject.classId = :classId', { classId })
+      .leftJoinAndSelect('subject.class', 'class')
+      .getOne();
+  }
+  
 
   async findOne(id: string) {
     return this.subjectRepository.findOne({ where: { id: id } });

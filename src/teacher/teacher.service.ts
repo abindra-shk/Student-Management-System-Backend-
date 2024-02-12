@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { Teacher } from './entities/teacher.entity';
 import { UserService } from 'src/user/http/services/user.service';
 import { Role } from 'src/user/types';
+import { SubjectService } from 'src/subject/subject.service';
 
 @Injectable()
 export class TeacherService {
@@ -11,17 +12,19 @@ export class TeacherService {
     @InjectRepository(Teacher)
     private teacherRepository: Repository<Teacher>,
     private readonly userService: UserService,
+    private readonly subjectService: SubjectService,
+
   ) {}
 
   async create(createTeacherDto: any) {
+    console.log('Inside create method...', createTeacherDto);
     const user = await this.userService.create({
       username: createTeacherDto.username,
       password: createTeacherDto.password,
       role: Role.teacher,
       
     });
-    console.log(user.raw)
-
+    
     // Create teacher with the user ID
     const teacher = this.teacherRepository.create({
       firstName: createTeacherDto.firstName,
@@ -34,10 +37,26 @@ export class TeacherService {
       experience: createTeacherDto.experience,
       email: createTeacherDto.email,
       user: user.raw[0], // Assign the user entity
+      subjects:[]
     });
-    // console.log(createTeacherDto)
+   
+    const savedTeacher = await this.teacherRepository.save(teacher);
+    console.log('savedteacher',savedTeacher.subjects)
 
-    return this.teacherRepository.save(teacher);
+  // Add subjects to the teacher
+  for (const subjectInfo of createTeacherDto.subjects) {
+    const subject = await this.subjectService.findBySubjectNameAndClassId(subjectInfo.subjectName, subjectInfo.classId);
+    if (subject) {
+      savedTeacher.subjects.push(subject);
+    } else {
+      throw new NotFoundException(`Subject '${subjectInfo.subjectName}' for class '${subjectInfo.classId}' not found`);
+    }
+  }
+
+  // Save the updated teacher entity with associated subjects
+  await this.teacherRepository.save(savedTeacher);
+
+  return savedTeacher;
   }
   
 

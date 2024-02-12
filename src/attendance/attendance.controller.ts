@@ -1,34 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { AttendanceService } from './attendance.service';
-import { CreateAttendanceDto } from './dto/create-attendance.dto';
-import { UpdateAttendanceDto } from './dto/update-attendance.dto';
+// attendance-log.controller.ts
 
-@Controller('attendance')
-export class AttendanceController {
-  constructor(private readonly attendanceService: AttendanceService) {}
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { AttendanceLogService } from './attendance.service';
+
+@Controller('attendance-log')
+export class AttendanceLogController {
+  constructor(private readonly attendanceLogService: AttendanceLogService) {}
 
   @Post()
-  create(@Body() createAttendanceDto: CreateAttendanceDto) {
-    return this.attendanceService.create(createAttendanceDto);
+  create(@Body('username') username: string) {
+    return this.attendanceLogService.create(username);
   }
 
   @Get()
   findAll() {
-    return this.attendanceService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.attendanceService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAttendanceDto: UpdateAttendanceDto) {
-    return this.attendanceService.update(+id, updateAttendanceDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.attendanceService.remove(+id);
+    return this.attendanceLogService.findAll();
   }
 }
+
