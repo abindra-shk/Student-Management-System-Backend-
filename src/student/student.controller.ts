@@ -40,6 +40,11 @@ export class StudentController {
 
   }
 
+  @Get('byClass/:classId')
+  async findByClassId(@Param('classId') classId: string) {
+    return this.studentService.findByClassId(classId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(id);

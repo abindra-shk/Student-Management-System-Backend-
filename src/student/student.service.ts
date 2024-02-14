@@ -103,6 +103,14 @@ export class StudentService {
   return classCounts;
   }  
 
+  async findByClassId(classId: string) {
+    return this.studentRepository.createQueryBuilder('student')
+      .leftJoinAndSelect('student.class', 'class')
+      .leftJoinAndSelect('student.user', 'user')
+      .where('class.id = :classId', { classId })
+      .getMany();
+  }
+
   async update(id:string, data:CreateStudentDto) {
     const { class: className, ...restData } = data;
     const classEntity = await this.classService.findOneByClassName(className);
