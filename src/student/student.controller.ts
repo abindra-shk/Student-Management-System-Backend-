@@ -4,6 +4,7 @@ import { CreateStudentDto } from './dto/create-student.dto';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { ResponseMessage } from 'src/core/decorators/response.decorator';
+import { ReturnDocument } from 'typeorm';
 
 @Controller('student')
 @ApiTags('Student')
@@ -28,15 +29,26 @@ export class StudentController {
     return this.studentService.findAll();
   }
 
+  @Get('totalstudents')
+  countTotalStudents(){
+    return this.studentService.countTotalStudents();
+  }
+
+  @Get('countByClass')
+  async countStudentsByClass() {
+    return this.studentService.countStudentsByClass();
+
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateStudentDto: CreateStudentDto) {
-    return this.studentService.update(id, updateStudentDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateStudentDto: CreateStudentDto) {
+  //   return this.studentService.update(id, updateStudentDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
