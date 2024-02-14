@@ -12,5 +12,6 @@ import { ClassModule } from 'src/class/class.module';
   imports: [TypeOrmModule.forFeature([Student, User]), UserModule,ClassModule],
   controllers: [StudentController],
   providers: [StudentService],
+  exports: [StudentService],
 })
 export class StudentModule {}

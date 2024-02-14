@@ -6,6 +6,7 @@ import { UserService } from 'src/user/http/services/user.service';
 import { Role } from 'src/user/types';
 import { SubjectService } from 'src/subject/subject.service';
 import { AddressService } from 'src/address/address.service';
+import { CreateTeacherDto } from './dto/create-teacher.dto';
 
 @Injectable()
 export class TeacherService {
@@ -71,6 +72,55 @@ export class TeacherService {
   return savedTeacher;
   }
   
+  async createAll(createTeacherDtoArray: CreateTeacherDto[]) {
+    const createdTeachers = [];
+  
+    for (const createTeacherDto of createTeacherDtoArray) {
+      const user = await this.userService.create({
+        username: createTeacherDto.username,
+        password: createTeacherDto.password,
+        role: Role.teacher,
+        
+      });
+      
+      const address = await this.addressService.create({
+        address: createTeacherDto.address,
+        city: createTeacherDto.city,
+        state: createTeacherDto.state,
+        zipCode: createTeacherDto.zipCode,
+        country: createTeacherDto.country,
+      });
+      // Create student with the user ID
+      const teacher = this.teacherRepository.create({
+        firstName: createTeacherDto.firstName,
+        lastName: createTeacherDto.lastName,
+        gender: createTeacherDto.gender,
+        dateOfBirth: createTeacherDto.dateOfBirth,
+        mobile: createTeacherDto.mobile,
+        joiningDate: createTeacherDto.joiningDate,
+        qualification: createTeacherDto.qualification,
+        experience: createTeacherDto.experience,
+        email: createTeacherDto.email,
+        user: user.raw[0], // Assign the user entity
+        address: address,
+        subjects:[]
+      });
+
+      for (const subjectInfo of createTeacherDto.subjects) {
+        const subject = await this.subjectService.findBySubjectNameAndClassId(subjectInfo.subjectName, subjectInfo.classId);
+        if (subject) {
+          teacher.subjects.push(subject);
+        } else {
+          throw new NotFoundException(`Subject '${subjectInfo.subjectName}' for class '${subjectInfo.classId}' not found`);
+        }
+      }
+
+  
+      createdTeachers.push(teacher);
+    }
+  
+    return this.teacherRepository.save(createdTeachers);
+  }
 
   async findAll(){
     return this.teacherRepository.createQueryBuilder("teacher").getMany();

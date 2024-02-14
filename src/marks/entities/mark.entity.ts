@@ -8,7 +8,7 @@ import { ResultEnum } from 'src/common/enums/result.enum';
 @Entity()
 export class Marks {
   @PrimaryGeneratedColumn()
-  id: number;
+  id: string;
 
   @ManyToOne(() => Student)
   @JoinColumn()
@@ -29,5 +29,5 @@ export class Marks {
     enum: ResultEnum,
     default: ResultEnum.FAIL,
   })
-  attendance: ResultEnum;
+  result: ResultEnum;
 }

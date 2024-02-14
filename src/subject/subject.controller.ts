@@ -24,6 +24,11 @@ export class SubjectController {
     return this.subjectService.findAll();
   }
 
+  @Get('findByClassId/:classId')
+  findByClassId(@Param('classId') classId: string) {
+    return this.subjectService.findByClassId(classId);
+  }
+
   @Get('findBySubjectNameAndClassId')
   async findBySubjectNameAndClassId(
     @Query('subjectName') subjectName: string,
@@ -31,13 +36,12 @@ export class SubjectController {
   ) {
     return this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
   }
-  
-  
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.subjectService.findOne(id);
-  // }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.subjectService.findOne(id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateSubjectDto: CreateSubjectDto) {
