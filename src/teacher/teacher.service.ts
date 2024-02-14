@@ -5,6 +5,7 @@ import { Teacher } from './entities/teacher.entity';
 import { UserService } from 'src/user/http/services/user.service';
 import { Role } from 'src/user/types';
 import { SubjectService } from 'src/subject/subject.service';
+import { AddressService } from 'src/address/address.service';
 
 @Injectable()
 export class TeacherService {
@@ -13,6 +14,8 @@ export class TeacherService {
     private teacherRepository: Repository<Teacher>,
     private readonly userService: UserService,
     private readonly subjectService: SubjectService,
+    private readonly addressService: AddressService,
+    
 
   ) {}
 
@@ -23,6 +26,14 @@ export class TeacherService {
       password: createTeacherDto.password,
       role: Role.teacher,
       
+    });
+    
+    const address = await this.addressService.create({
+      address: createTeacherDto.address,
+      city: createTeacherDto.city,
+      state: createTeacherDto.state,
+      zipCode: createTeacherDto.zipCode,
+      country: createTeacherDto.country,
     });
     
     // Create teacher with the user ID
@@ -37,6 +48,7 @@ export class TeacherService {
       experience: createTeacherDto.experience,
       email: createTeacherDto.email,
       user: user.raw[0], // Assign the user entity
+      address: address,
       subjects:[]
     });
    

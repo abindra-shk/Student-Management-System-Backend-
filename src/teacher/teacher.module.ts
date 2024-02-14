@@ -7,9 +7,10 @@ import { UserService } from 'src/user/http/services/user.service';
 import { User } from 'src/user/entities/user.entity';
 import { UserModule } from 'src/user/user.module';
 import { SubjectModule } from 'src/subject/subject.module';
+import { AddressModule } from 'src/address/address.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Teacher,User]),UserModule,SubjectModule],
+  imports: [TypeOrmModule.forFeature([Teacher,User]),UserModule,SubjectModule,AddressModule],
   controllers: [TeacherController],
   providers: [TeacherService],
 })

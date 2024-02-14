@@ -2,9 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, Ma
 import { Exclude } from 'class-transformer';
 import { User } from "src/user/entities/user.entity";
 import { Subject } from "src/subject/entities/subject.entity";
-
-
-
+import { Address } from "src/address/entities/address.entity";
 
 @Entity()
 export class Teacher {
@@ -47,6 +45,10 @@ export class Teacher {
   @OneToOne(() => User, { cascade: true, eager: true })
   @JoinColumn()
   user: User;
+
+  @OneToOne(() => Address, { cascade: true, eager: true })
+  @JoinColumn()
+  address: Address;
 
   @ManyToMany(() => Subject, { cascade: true })
   @JoinTable({
