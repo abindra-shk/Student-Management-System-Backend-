@@ -1,14 +1,12 @@
-// attendance-log.entity.ts
-
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class AttendanceLog {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+  @PrimaryColumn()
   username: string;
+
+  @PrimaryColumn({ type: 'date' })
+  date: Date;
 
   @Column({ type: 'timestamp', nullable: true })
   entrytime: Date;

@@ -9,6 +9,14 @@ export class Subject {
   @Column()
   subjectName: string;
 
+  @Column({ type: 'int' })
+  fullMarks: number;
+
+  @Column({ type: 'int' })
+  passMarks: number;
+
   @ManyToOne(() => Class)
   class: Class;
+
+
 }
