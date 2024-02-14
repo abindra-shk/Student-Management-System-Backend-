@@ -21,7 +21,9 @@ export class SubjectService {
     }
     const newSubject = this.subjectRepository.create({
       subjectName: createSubjectDto.subjectName,
-      class: classEntity // Associate the class entity with the subject
+      class: classEntity, // Associate the class entity with the subject
+      fullMarks: createSubjectDto.fullMarks,
+      passMarks: createSubjectDto.passMarks,
     });
 
     // Save the new subject entity
@@ -39,7 +41,9 @@ export class SubjectService {
       
       const newSubject = this.subjectRepository.create({
         subjectName: createSubjectDto.subjectName,
-        class: classEntity
+        class: classEntity,
+        fullMarks: createSubjectDto.fullMarks,
+        passMarks: createSubjectDto.passMarks,
       });
       
       subjects.push(newSubject);
