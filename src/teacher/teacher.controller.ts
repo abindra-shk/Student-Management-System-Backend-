@@ -17,6 +17,13 @@ export class TeacherController {
     return this.teacherService.create(createTeacherDto);
   }
 
+  @Post('allteachers')
+  @ResponseMessage('Teachers created successfully')
+  createAll(@Body() createTeacherDto: CreateTeacherDto[]) {
+    console.log(createTeacherDto)
+    return this.teacherService.createAll(createTeacherDto);
+  }
+
   @Get()
   findAll() {
     return this.teacherService.findAll();

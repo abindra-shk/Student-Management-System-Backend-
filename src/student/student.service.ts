@@ -75,11 +75,14 @@ export class StudentService {
   }
 
   async findAll() {
-    return this.studentRepository.createQueryBuilder("student").getMany();
+    return this.studentRepository.createQueryBuilder("student")
+      .leftJoinAndSelect('student.class', 'class')
+      .leftJoinAndSelect('student.user', 'user')
+      .getMany();
   }
   
-  async findOne(id: number) {
-    return this.studentRepository.findOne({ where: { id: id.toString() } });
+  async findOne(id: string) {
+    return this.studentRepository.findOne({ where: { id: id } });
   }
 
   async update(id:string, data:CreateStudentDto) {

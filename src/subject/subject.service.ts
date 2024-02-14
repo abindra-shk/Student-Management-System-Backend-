@@ -60,6 +60,10 @@ export class SubjectService {
     .getMany();
   }
 
+  async findByClassId(classId: string) {
+    return this.subjectRepository.find({ where: { class: { id: classId } } });
+  }
+
   async findBySubjectNameAndClassId(subjectName: string, classId: string) {
     return this.subjectRepository
       .createQueryBuilder('subject')
@@ -68,7 +72,6 @@ export class SubjectService {
       .leftJoinAndSelect('subject.class', 'class')
       .getOne();
   }
-  
 
   async findOne(id: string) {
     return this.subjectRepository.findOne({ where: { id: id } });

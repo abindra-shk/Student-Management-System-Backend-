@@ -18,7 +18,4 @@ export class CreateMarkDto {
 
   @IsInt()
   marksObtained: number;
-
-  @IsEnum(ResultEnum)
-  result: ResultEnum;
 }
