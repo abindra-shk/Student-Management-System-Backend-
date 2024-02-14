@@ -85,6 +85,24 @@ export class StudentService {
     return this.studentRepository.findOne({ where: { id: id } });
   }
 
+  async countTotalStudents(){
+    return this.studentRepository.count();
+  }
+
+  async countStudentsByClass(){
+    const classCounts = await this.studentRepository
+    .createQueryBuilder('student')
+    .select('student.classId as classId, COUNT(*) as count')
+    .groupBy('student.classId')
+    .orderBy('student.classId')
+    .getRawMany();
+
+  // Log only the 'count' values
+  console.log(classCounts.map(count => count.count));
+
+  return classCounts;
+  }  
+
   async update(id:string, data:CreateStudentDto) {
     const { class: className, ...restData } = data;
     const classEntity = await this.classService.findOneByClassName(className);
