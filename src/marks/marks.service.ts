@@ -55,19 +55,17 @@ export class MarksService {
     for (const createMarkDto of createMarkDtos) {
       const { studentId, subjectName, classId, academicYear, marksObtained } = createMarkDto;
 
-      // Find student
+
       const student = await this.studentService.findOne(studentId);
       if (!student) {
         throw new Error(`Student with ID ${studentId} not found`);
       }
 
-      // Find subject
       const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
       if (!subject) {
         throw new Error(`Subject '${subjectName}' not found for class ${classId}`);
       }
-
-      // Check if marks obtained is greater than pass marks
+      
       const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
 
       const mark = this.marksRepository.create({
@@ -89,7 +87,16 @@ export class MarksService {
     if (!student) {
       throw new NotFoundException(`Student with ID ${studentId} not found`);
     }
-    return this.marksRepository.find({ where: { student: { id: studentId } } });
+    return this.marksRepository.createQueryBuilder("mark")
+      .leftJoin("mark.subject", "subject")
+      .select("subject.subjectName", "subjectName")
+      .addSelect("subject.fullMarks", "fullMarks")
+      .addSelect("subject.passMarks", "passMarks")
+      .addSelect("mark.marksObtained", "marksObtained")
+      .addSelect("mark.academicYear", "academicYear")
+      .addSelect("mark.result", "result")
+      .where("mark.student = :studentId", { studentId })
+      .getRawMany();
   }
 
   async findAll(){
