@@ -3,9 +3,6 @@ import { Exclude } from 'class-transformer';
 import { User } from "src/user/entities/user.entity";
 import { Subject } from "src/subject/entities/subject.entity";
 
-
-
-
 @Entity()
 export class Teacher {
   constructor(props?: Partial<Teacher>) {

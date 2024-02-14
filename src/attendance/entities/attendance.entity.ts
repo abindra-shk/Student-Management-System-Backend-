@@ -10,9 +10,9 @@ export class AttendanceLog {
   @Column()
   username: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  entryTime: Date;
+  @Column({ type: 'timestamp', nullable: true })
+  entrytime: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  exitTime: Date;
+  exittime: Date;
 }

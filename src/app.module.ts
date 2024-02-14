@@ -14,6 +14,8 @@ import { SubjectModule } from './subject/subject.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { MarksModule } from './marks/marks.module';
 import dbconfig from './config/database.config';
+import { ScheduleModule } from '@nestjs/schedule';
+import { FinalAttendanceModule } from './final_attendance/final_attendance.module';
 
 @Module({
   imports: [
@@ -32,6 +34,7 @@ import dbconfig from './config/database.config';
     MulterModule.register({
       dest: './files',
     }),
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot(),
     CoreModule,
     UserModule,
@@ -42,6 +45,7 @@ import dbconfig from './config/database.config';
     SubjectModule,
     AttendanceModule,
     MarksModule,
+    // FinalAttendanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
