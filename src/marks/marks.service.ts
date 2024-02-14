@@ -89,7 +89,16 @@ export class MarksService {
     if (!student) {
       throw new NotFoundException(`Student with ID ${studentId} not found`);
     }
-    return this.marksRepository.find({ where: { student: { id: studentId } } });
+    return this.marksRepository.createQueryBuilder("mark")
+      .leftJoin("mark.subject", "subject")
+      .select("subject.subjectName", "subjectName")
+      .addSelect("subject.fullMarks", "fullMarks")
+      .addSelect("subject.passMarks", "passMarks")
+      .addSelect("mark.marksObtained", "marksObtained")
+      .addSelect("mark.academicYear", "academicYear")
+      .addSelect("mark.result", "result")
+      .where("mark.student = :studentId", { studentId })
+      .getRawMany();
   }
 
   async findAll(){
