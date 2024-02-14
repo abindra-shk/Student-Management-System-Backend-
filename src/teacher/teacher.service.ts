@@ -122,12 +122,19 @@ export class TeacherService {
     return this.teacherRepository.save(createdTeachers);
   }
 
-  async findAll(){
-    return this.teacherRepository.createQueryBuilder("teacher").getMany();
+  async findAll() {
+    return this.teacherRepository.createQueryBuilder("teacher")
+      .leftJoinAndSelect("teacher.address", "address")
+      .leftJoinAndSelect("teacher.user", "user")
+      .getMany();
   }
 
-  async findOne(id: number) {
-    return this.teacherRepository.findOne({ where: { id: id.toString() } });
+  async findOne(id: string) {
+    return this.teacherRepository.createQueryBuilder("teacher")
+      .leftJoinAndSelect("teacher.address", "address")
+      .leftJoinAndSelect("teacher.user", "user")
+      .where("teacher.id = :id", { id: id })
+      .getOne();
   }
 
   async update(id, data) {
