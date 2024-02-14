@@ -47,7 +47,7 @@ import { AddressModule } from './address/address.module';
     AttendanceModule,
     MarksModule,
     AddressModule,
-    // FinalAttendanceModule,
+    FinalAttendanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
