@@ -16,6 +16,7 @@ import { MarksModule } from './marks/marks.module';
 import dbconfig from './config/database.config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { FinalAttendanceModule } from './final_attendance/final_attendance.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { FinalAttendanceModule } from './final_attendance/final_attendance.modul
     SubjectModule,
     AttendanceModule,
     MarksModule,
+    AddressModule,
     // FinalAttendanceModule,
   ],
   controllers: [AppController],
