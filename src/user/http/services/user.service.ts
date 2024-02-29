@@ -7,6 +7,7 @@ import { comparePasswords } from 'src/authentication/http/controllers/authentica
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from 'src/user/commands/create-user.command';
 import { CreateUserRequest } from '../requests/create-user.request';
+import { Role } from 'src/user/types';
 
 @Injectable()
 export class UserService {
@@ -38,10 +39,20 @@ export class UserService {
     return this.userRepository.createQueryBuilder("user").getMany();
   }
 
-  async findOne(id: number) {
-    return this.userRepository.findOne({ where: { id: id.toString() } });
+  async findOne(id: string) {
+    return this.userRepository.findOne({ where: { id: id } });
   }
   
+  async findOneByUsername(username: string) {
+    return this.userRepository.findOne({ where: { username: username } });
+  }
+
+  async findUnregisteredStudents(){
+    return this.userRepository.find({
+      where: { role: Role.student },
+    });
+  }
+
   async changePassword(id: number, data) {
     const user: any = await this.userRepository
       .createQueryBuilder("user")

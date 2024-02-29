@@ -9,5 +9,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([AttendanceLog])],
   controllers: [AttendanceLogController],
   providers: [AttendanceLogService],
+  exports: [AttendanceLogService]
 })
 export class AttendanceModule {}

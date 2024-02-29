@@ -45,6 +45,16 @@ export class StudentController {
     return this.studentService.findByClassId(classId);
   }
 
+  @Get('gender-by-class')
+  async getGenderCountByClass() {
+    return this.studentService.getGenderCountByClass();
+  }
+
+  @Get('total-gender-count')
+  async getTotalGenderCount() {
+    return this.studentService.getTotalGenderCount();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(id);
