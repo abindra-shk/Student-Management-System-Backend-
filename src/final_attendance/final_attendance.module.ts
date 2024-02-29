@@ -11,5 +11,6 @@ import { FinalAttendance } from './entities/final_attendance.entity';
   imports: [ScheduleModule.forRoot(), TypeOrmModule.forFeature([FinalAttendance]), AttendanceModule, UserModule],
   controllers: [FinalAttendanceController],
   providers: [FinalAttendanceService],
+  exports: [FinalAttendanceService],
 })
 export class FinalAttendanceModule {}

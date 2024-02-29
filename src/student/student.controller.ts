@@ -55,6 +55,11 @@ export class StudentController {
     return this.studentService.getTotalGenderCount();
   }
 
+  @Get('top-attendance-byclass')
+  async getTopAttendeesByClass() {
+    return this.studentService.getTopAttendeesByClass();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.studentService.findOne(id);
