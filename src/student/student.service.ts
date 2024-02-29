@@ -7,6 +7,7 @@ import { Role } from 'src/user/types';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { Class } from 'src/class/entities/class.entity';
 import { ClassService } from 'src/class/class.service';
+import { FinalAttendanceService } from 'src/final_attendance/final_attendance.service';
 
 @Injectable()
 export class StudentService {
@@ -14,7 +15,9 @@ export class StudentService {
     @InjectRepository(Student)
     private studentRepository: Repository<Student>,
     private readonly userService: UserService,
-    private readonly classService: ClassService
+    private readonly classService: ClassService,
+    private readonly finalAttendanceService: FinalAttendanceService,
+
   ) {}
 
   async create(createStudentDto: any) {
@@ -135,6 +138,88 @@ export class StudentService {
 
     return result;
   }
+
+ 
+//   async getTopAttendeesByClass() {
+//     const topAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
+//     const topAttendeesByClass = {};
+
+//     for (const attendee of topAttendees) {
+//         const userId = attendee.userId;
+//         const student = await this.studentRepository
+//             .createQueryBuilder('student')
+//             .leftJoin('student.user', 'user')
+//             .leftJoinAndSelect('student.class', 'class')
+//             .where('user.id = :userId', { userId: userId })
+//             .getOne();
+
+//         if (student) {
+//             const className = student.class.id;
+
+//             if (!topAttendeesByClass[className]) {
+//                 topAttendeesByClass[className] = [];
+//             }
+
+//             topAttendeesByClass[className].push({
+//                 userId: userId,
+//                 firstName: student.firstName,
+//                 lastName: student.lastName,
+//                 gender: student.gender,
+//                 rollNo: student.rollNo,
+//                 guardianName: student.guardianName,
+//                 guardianPhone: student.guardianPhone,
+//                 address: student.address,
+//                 presentAttendanceCount: attendee.count,
+//             });
+//         }
+//     }
+
+//     return topAttendeesByClass;
+// }
+async getTopAttendeesByClass() {
+  const topPresentAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
+  const topAbsentAttendees = await this.finalAttendanceService.getTopAbsentAttendanceLogs();
+  const topAttendeesByClass = {};
+
+  for (const attendee of topPresentAttendees) {
+      const userId = attendee.userId;
+      const student = await this.studentRepository
+          .createQueryBuilder('student')
+          .leftJoin('student.user', 'user')
+          .leftJoinAndSelect('student.class', 'class')
+          .where('user.id = :userId', { userId: userId })
+          .getOne();
+
+      if (student) {
+          const className = student.class.id;
+
+          if (!topAttendeesByClass[className]) {
+              topAttendeesByClass[className] = [];
+          }
+
+          // Find the corresponding absent count for this student
+          const absentAttendee = topAbsentAttendees.find(a => a.userId === userId);
+          const absentCount = absentAttendee ? absentAttendee.count : 0;
+
+          topAttendeesByClass[className].push({
+              userId: userId,
+              firstName: student.firstName,
+              lastName: student.lastName,
+              gender: student.gender,
+              rollNo: student.rollNo,
+              guardianName: student.guardianName,
+              guardianPhone: student.guardianPhone,
+              address: student.address,
+              presentAttendanceCount: attendee.count,
+              absentAttendanceCount: absentCount,
+          });
+      }
+  }
+
+  return topAttendeesByClass;
+}
+
+
 
   async update(id:string, data:CreateStudentDto) {
     const { class: className, ...restData } = data;

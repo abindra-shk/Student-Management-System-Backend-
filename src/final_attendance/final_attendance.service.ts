@@ -160,4 +160,25 @@ async aggregateAttendanceData() {
     }
   }
 }
+
+async getTopAttendanceLogs(){
+  return this.finalAttendanceRepository.createQueryBuilder('finalAttendance')
+  .select('finalAttendance.userId', 'userId')
+  .addSelect('COUNT(finalAttendance.id)', 'count')
+  .where('finalAttendance.attendance = :attendance', { attendance: AttendanceEnum.PRESENT })
+  .groupBy('finalAttendance.userId')
+  .orderBy('count', 'DESC')
+  .getRawMany();
+}
+
+async getTopAbsentAttendanceLogs() {
+  return this.finalAttendanceRepository.createQueryBuilder('finalAttendance')
+      .select('finalAttendance.userId', 'userId')
+      .addSelect('COUNT(finalAttendance.id)', 'count')
+      .where('finalAttendance.attendance = :attendance', { attendance: AttendanceEnum.ABSENT })
+      .groupBy('finalAttendance.userId')
+      .orderBy('count', 'DESC')
+      .getRawMany();
+}
+
 }

@@ -10,4 +10,16 @@ export class FinalAttendanceController {
     await this.finalAttendanceService.aggregateAttendanceData();
     return 'Attendance aggregation triggered successfully!';
   }
+
+  @Get('top-attendance')
+  async getTopAttendanceLogs(){
+    return await this.finalAttendanceService.getTopAttendanceLogs();
+   
+  }
+
+  @Get('absent-attendance')
+  async getTopAbsentAttendanceLogs(){
+    return await this.finalAttendanceService.getTopAbsentAttendanceLogs();
+   
+  }
 }
