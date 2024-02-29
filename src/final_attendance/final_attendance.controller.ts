@@ -6,7 +6,7 @@ export class FinalAttendanceController {
   constructor(private readonly finalAttendanceService: FinalAttendanceService) {}
 
   @Get('aggregate')
-  async aggregateAttendanceDataManually(): Promise<string> {
+  async aggregateAttendanceDataManually(){
     await this.finalAttendanceService.aggregateAttendanceData();
     return 'Attendance aggregation triggered successfully!';
   }

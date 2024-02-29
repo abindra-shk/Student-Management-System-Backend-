@@ -111,6 +111,31 @@ export class StudentService {
       .getMany();
   }
 
+  async getGenderCountByClass(): Promise<any> {
+    const result = await this.studentRepository
+      .createQueryBuilder('student')
+      .select('COUNT(student.id)', 'count')
+      .addSelect('student.gender', 'gender')
+      .addSelect('student.class', 'class')
+      .groupBy('student.gender')
+      .addGroupBy('student.class')
+      .orderBy('student.class')
+      .getRawMany();
+
+    return result;
+  }
+
+  async getTotalGenderCount(): Promise<any> {
+    const result = await this.studentRepository
+      .createQueryBuilder('student')
+      .select('COUNT(student.id)', 'count')
+      .addSelect('student.gender', 'gender')
+      .groupBy('student.gender')
+      .getRawMany();
+
+    return result;
+  }
+
   async update(id:string, data:CreateStudentDto) {
     const { class: className, ...restData } = data;
     const classEntity = await this.classService.findOneByClassName(className);

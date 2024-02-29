@@ -93,58 +93,58 @@ export class AuthenticationController {
   //   }
   // }
 
-  @Post("/me")
-  @ApiBody({
-    schema: {
-      type: "object",
-      properties: {
-        username: {
-          type: "string"
-        },
-        password: {
-          type: "string"
-        }
-      }
-    }
-  })
-  async loginUser(req) {
-    const user = await this.userRepository.findOne({ where: { username: req.username } });
-    const token = await this.tokenStorage.generateToken({
-      data: {
-        id: user.id,
-        username: user.username,
-        password: user.password
-      }
-    });
+//   @Post("/me")
+//   @ApiBody({
+//     schema: {
+//       type: "object",
+//       properties: {
+//         username: {
+//           type: "string"
+//         },
+//         password: {
+//           type: "string"
+//         }
+//       }
+//     }
+//   })
+//   async loginUser(req) {
+//     const user = await this.userRepository.findOne({ where: { username: req.username } });
+//     const token = await this.tokenStorage.generateToken({
+//       data: {
+//         id: user.id,
+//         username: user.username,
+//         password: user.password
+//       }
+//     });
 
 
 
-    if (!user) {
-      throw new HttpException("User not found", HttpStatus.UNAUTHORIZED);
-    }
+//     if (!user) {
+//       throw new HttpException("User not found", HttpStatus.UNAUTHORIZED);
+//     }
 
 
-    const areEqual = await comparePasswords(user.password, req.password);
+//     const areEqual = await comparePasswords(user.password, req.password);
 
-    if (!areEqual) {
-      throw new HttpException(
-        "Username or password is incorrect",
-        HttpStatus.UNAUTHORIZED
-      );
-    } else {
-      return {
-        user: new UserDetailResponse({
-          ...user
-        }),
-        accessToken: token,
-        refreshToken: token, // Todo: will implement later
-        tokenType: "bearer"
-      };
-    }
-  }
+//     if (!areEqual) {
+//       throw new HttpException(
+//         "Username or password is incorrect",
+//         HttpStatus.UNAUTHORIZED
+//       );
+//     } else {
+//       return {
+//         user: new UserDetailResponse({
+//           ...user
+//         }),
+//         accessToken: token,
+//         refreshToken: token, // Todo: will implement later
+//         tokenType: "bearer"
+//       };
+//     }
+//   }
+// }
+
 }
-
-
 export const comparePasswords = async (userPassword, currentPassword) => {
   return await bcrypt.compare(currentPassword, userPassword);
 };

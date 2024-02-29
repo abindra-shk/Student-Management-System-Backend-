@@ -50,7 +50,6 @@ export class UserService {
   async findUnregisteredStudents(){
     return this.userRepository.find({
       where: { role: Role.student },
-      relations: ['finalAttendance'],
     });
   }
 

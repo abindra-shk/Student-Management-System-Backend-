@@ -24,6 +24,11 @@ export class AttendanceLogController {
     return this.attendanceLogService.findAll();
   }
 
+  @Get('byDate/:Date')
+  async findbyDate(@Param('Date') date: Date){
+    return this.attendanceLogService.findByDate(date);
+  }
+
   // @Get(':username/:date')
   // async findOne(@Param('username') username: string, @Param('date') date: Date){
   //   return this.attendanceLogService.findOne(username, date);
