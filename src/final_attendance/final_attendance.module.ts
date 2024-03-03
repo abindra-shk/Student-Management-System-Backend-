@@ -6,9 +6,11 @@ import { UserModule } from 'src/user/user.module';
 import { AttendanceModule } from 'src/attendance/attendance.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FinalAttendance } from './entities/final_attendance.entity';
+import { Student } from 'src/student/entities/student.entity';
+import { StudentModule } from 'src/student/student.module';
 
 @Module({
-  imports: [ScheduleModule.forRoot(), TypeOrmModule.forFeature([FinalAttendance]), AttendanceModule, UserModule],
+  imports: [ScheduleModule.forRoot(), TypeOrmModule.forFeature([FinalAttendance]), AttendanceModule, UserModule, StudentModule],
   controllers: [FinalAttendanceController],
   providers: [FinalAttendanceService],
   exports: [FinalAttendanceService],

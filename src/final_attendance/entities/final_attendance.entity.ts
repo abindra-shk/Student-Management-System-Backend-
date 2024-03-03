@@ -1,5 +1,6 @@
 // final-attendance.entity.ts
 import { AttendanceEnum } from 'src/common/enums/attendance.enum';
+import { Student } from 'src/student/entities/student.entity';
 import { User } from 'src/user/entities/user.entity';
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne, ManyToOne, ManyToMany } from 'typeorm';
 
@@ -24,7 +25,9 @@ export class FinalAttendance {
   @Column({ nullable: true })
   remark: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => Student)
   @JoinColumn()
-  user: User;
+  student: Student;
+
+
 }

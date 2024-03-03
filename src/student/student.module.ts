@@ -11,7 +11,7 @@ import { FinalAttendance } from 'src/final_attendance/entities/final_attendance.
 import { FinalAttendanceModule } from 'src/final_attendance/final_attendance.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Student, User]), UserModule,ClassModule, FinalAttendanceModule],
+  imports: [TypeOrmModule.forFeature([Student, User]), UserModule,ClassModule],
   controllers: [StudentController],
   providers: [StudentService],
   exports: [StudentService],
