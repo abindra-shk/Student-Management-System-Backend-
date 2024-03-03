@@ -16,7 +16,7 @@ export class StudentService {
     private studentRepository: Repository<Student>,
     private readonly userService: UserService,
     private readonly classService: ClassService,
-    private readonly finalAttendanceService: FinalAttendanceService,
+    // private readonly finalAttendanceService: FinalAttendanceService,
 
   ) {}
 
@@ -176,48 +176,57 @@ export class StudentService {
 
 //     return topAttendeesByClass;
 // }
-async getTopAttendeesByClass() {
-  const topPresentAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
-  const topAbsentAttendees = await this.finalAttendanceService.getTopAbsentAttendanceLogs();
-  const topAttendeesByClass = {};
+  // async getTopAttendeesByClass() {
+  //   const topPresentAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
+  //   const topAbsentAttendees = await this.finalAttendanceService.getTopAbsentAttendanceLogs();
+  //   const topAttendeesByClass = {};
 
-  for (const attendee of topPresentAttendees) {
-      const userId = attendee.userId;
-      const student = await this.studentRepository
-          .createQueryBuilder('student')
-          .leftJoin('student.user', 'user')
-          .leftJoinAndSelect('student.class', 'class')
-          .where('user.id = :userId', { userId: userId })
-          .getOne();
+  //   for (const attendee of topPresentAttendees) {
+  //       const userId = attendee.userId;
+  //       const student = await this.studentRepository
+  //           .createQueryBuilder('student')
+  //           .leftJoin('student.user', 'user')
+  //           .leftJoinAndSelect('student.class', 'class')
+  //           .where('user.id = :userId', { userId: userId })
+  //           .getOne();
 
-      if (student) {
-          const className = student.class.id;
+  //       if (student) {
+  //           const className = student.class.id;
 
-          if (!topAttendeesByClass[className]) {
-              topAttendeesByClass[className] = [];
-          }
+  //           if (!topAttendeesByClass[className]) {
+  //               topAttendeesByClass[className] = [];
+  //           }
 
-          // Find the corresponding absent count for this student
-          const absentAttendee = topAbsentAttendees.find(a => a.userId === userId);
-          const absentCount = absentAttendee ? absentAttendee.count : 0;
+  //           // Find the corresponding absent count for this student
+  //           const absentAttendee = topAbsentAttendees.find(a => a.userId === userId);
+  //           const absentCount = absentAttendee ? absentAttendee.count : 0;
 
-          topAttendeesByClass[className].push({
-              userId: userId,
-              firstName: student.firstName,
-              lastName: student.lastName,
-              gender: student.gender,
-              rollNo: student.rollNo,
-              guardianName: student.guardianName,
-              guardianPhone: student.guardianPhone,
-              address: student.address,
-              presentAttendanceCount: attendee.count,
-              absentAttendanceCount: absentCount,
-          });
-      }
+  //           topAttendeesByClass[className].push({
+  //               userId: userId,
+  //               firstName: student.firstName,
+  //               lastName: student.lastName,
+  //               gender: student.gender,
+  //               rollNo: student.rollNo,
+  //               guardianName: student.guardianName,
+  //               guardianPhone: student.guardianPhone,
+  //               address: student.address,
+  //               presentAttendanceCount: attendee.count,
+  //               absentAttendanceCount: absentCount,
+  //           });
+  //       }
+  //   }
+
+  //   return topAttendeesByClass;
+  // }
+  
+  async findOneByUsername(username: string){
+    return this.studentRepository
+      .createQueryBuilder('student')
+      .leftJoinAndSelect('student.user', 'user')
+      .where('user.username = :username', { username })
+      .getOne();
   }
-
-  return topAttendeesByClass;
-}
+  
 
 
 

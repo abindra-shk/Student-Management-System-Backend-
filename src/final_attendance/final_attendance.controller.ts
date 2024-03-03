@@ -12,14 +12,12 @@ export class FinalAttendanceController {
   }
 
   @Get('top-attendance')
-  async getTopAttendanceLogs(){
-    return await this.finalAttendanceService.getTopAttendanceLogs();
-   
+  async getTopAttendeesByClass(){
+    return await this.finalAttendanceService.getTopAttendeesByClass(); 
   }
 
-  @Get('absent-attendance')
-  async getTopAbsentAttendanceLogs(){
-    return await this.finalAttendanceService.getTopAbsentAttendanceLogs();
-   
+  @Get('AttendanceByDateAndClass')
+  async getAttendanceByDateAndClass(){
+    return await this.finalAttendanceService.getTotalAttendanceByClassAndDate();
   }
 }
