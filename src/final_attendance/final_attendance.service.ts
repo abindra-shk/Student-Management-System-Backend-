@@ -163,6 +163,47 @@ async aggregateAttendanceData() {
     }
   }
 }
+async aggregateAttendance(username: string) {
+  // Retrieve all attendance logs for the given username
+  const attendanceLogs = await this.attendancelogService.findByUsername(username);
+  const student = await this.studentService.findOneByUsername(username);
+  // Process attendance logs and calculate total hours spent
+  for (const log of attendanceLogs) {
+    const logDate = moment(log.date);
+    
+    // Check if it's Saturday (Day 6 in JavaScript Date.getDay())
+    if (logDate.day() === 6) {
+      console.log(`Skipping Saturday ${logDate.format('YYYY-MM-DD')}`);
+      continue; // Skip to the next iteration
+    }
+
+    const totalHours = Math.round(moment(log.exittime).diff(moment(log.entrytime), 'hours', true));
+    const attendance = totalHours >= 5 ? AttendanceEnum.PRESENT : AttendanceEnum.ABSENT;
+    const remark = totalHours < 5 ? 'Total hours spent in class less than 5, not present' : null;
+  
+    let finalAttendance = await this.finalAttendanceRepository.createQueryBuilder('finalAttendance')
+      .leftJoinAndSelect('finalAttendance.student', 'student')
+      .where('student.id = :studentId', { studentId: student.id })
+      .andWhere('finalAttendance.date = :date', { date: log.date })
+      .getOne();
+
+    if (!finalAttendance) {
+
+      finalAttendance = this.finalAttendanceRepository.create({
+        student: student,
+        date: log.date,
+      });
+    }
+
+    finalAttendance.attendance = attendance;
+    finalAttendance.totalHours = totalHours;
+    finalAttendance.remark = remark;
+
+    await this.finalAttendanceRepository.save(finalAttendance);
+  }
+}
+
+
 
 async getTopAttendeesByClass() {
   const topAttendees = await this.finalAttendanceRepository
@@ -271,8 +312,10 @@ async getFinalAttendanceByStudentId(studentId: string) {
     .createQueryBuilder('finalAttendance')
     .leftJoinAndSelect('finalAttendance.student', 'student')
     .where('student.id = :studentId', { studentId })
+    .orderBy('finalAttendance.date', 'DESC') // Sorting by date in descending order
     .getMany();
 }
+
 
 }
 
