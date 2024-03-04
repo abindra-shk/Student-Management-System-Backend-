@@ -200,6 +200,38 @@ export class MarksService {
     return marksByStudent;
   }
   
+  async updateMarksByStudentId(createMarkDto: CreateMarkDto) {
+    const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
+
+    // Find student
+    const student = await this.studentService.findOne(student_id);
+    if (!student) {
+      throw new Error('Student not found');
+    }
+
+    // Find subject
+    const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+    if (!subject) {
+      throw new Error('Subject not found');
+    }
+
+    // Check if marks obtained is greater than pass marks
+    const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+    // Find the existing mark
+    const existingMark = await this.findExistingMark(student_id, subject.id, academicYear);
+    if (!existingMark) {
+      throw new Error('Record not found');
+    }
+
+    // Update marks obtained
+    existingMark.marksObtained = marksObtained;
+    existingMark.result = result;
+
+    return this.marksRepository.save(existingMark);
+  }
+
+
   async findExistingMark(studentId: string, subjectId: string, academicYear: number) {
     const existingMark = await this.marksRepository.createQueryBuilder("mark")
       .leftJoin("mark.student", "student")
@@ -212,6 +244,41 @@ export class MarksService {
 
     return existingMark;
 }
+
+async update(id: string, data: CreateMarkDto) {
+  const { student_id, subjectName, classId, academicYear, marksObtained } = data;
+
+  // Find student
+  const student = await this.studentService.findOne(student_id);
+  if (!student) {
+    throw new NotFoundException(`Student with ID ${student_id} not found`);
+  }
+
+  // Find subject
+  const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+  if (!subject) {
+    throw new NotFoundException(`Subject '${subjectName}' not found for class ${classId}`);
+  }
+
+  // Check if marks obtained is greater than pass marks
+  const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+  // Find the mark to update
+  const mark = await this.marksRepository.findOne({ where: { id: id } });
+  if (!mark) {
+    throw new NotFoundException(`Mark with ID ${id} not found`);
+  }
+
+  // Update mark properties
+  mark.student = student;
+  mark.subject = subject;
+  mark.academicYear = academicYear;
+  mark.marksObtained = marksObtained;
+  mark.result = result;
+
+  return this.marksRepository.save(mark);
+}
+
 
   async findAll(){
     return this.marksRepository.find();
