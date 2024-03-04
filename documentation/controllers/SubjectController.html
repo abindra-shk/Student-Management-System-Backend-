@@ -153,7 +153,20 @@
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                <a href="#createAll" >createAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
                                 <a href="#findAll" >findAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#findByClassId" >findByClassId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                    <span class="modifier">Async</span>
+                                <a href="#findBySubjectNameAndClassId" >findBySubjectNameAndClassId</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -213,8 +226,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/subject/subject.controller.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="13"
+                                    class="link-to-prism">src/subject/subject.controller.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -238,6 +251,82 @@
                                                 <td>createSubjectDto</td>
                                             <td>
                                                             <code><a href="../classes/CreateSubjectDto.html" target="_self" >CreateSubjectDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAll"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>createAll</b></span>
+                        <a href="#createAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createAll(createSubjectDto: <a href="../classes/CreateSubjectDto.html" target="_self">CreateSubjectDto[]</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Post(&#x27;all-subjects&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/subject/subject.controller.ts:18</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createSubjectDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateSubjectDto.html" target="_self" >CreateSubjectDto[]</a></code>
                                             </td>
 
                                             <td>
@@ -289,8 +378,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/subject/subject.controller.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/subject/subject.controller.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -302,6 +391,171 @@
                             <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findByClassId"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>findByClassId</b></span>
+                        <a href="#findByClassId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findByClassId(classId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;findByClassId/:classId&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/subject/subject.controller.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>classId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findBySubjectNameAndClassId"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                            <span class="modifier">Async</span>
+                        <span ><b>findBySubjectNameAndClassId</b></span>
+                        <a href="#findBySubjectNameAndClassId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findBySubjectNameAndClassId(subjectName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, classId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;findBySubjectNameAndClassId&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/subject/subject.controller.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>subjectName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>classId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -335,8 +589,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/subject/subject.controller.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="42"
+                                    class="link-to-prism">src/subject/subject.controller.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -411,8 +665,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/subject/subject.controller.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="52"
+                                    class="link-to-prism">src/subject/subject.controller.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +727,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateSubjectDto: <a href="../classes/UpdateSubjectDto.html" target="_self">UpdateSubjectDto</a>)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateSubjectDto: <a href="../classes/CreateSubjectDto.html" target="_self">CreateSubjectDto</a>)</code>
                 </td>
             </tr>
 
@@ -487,8 +741,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/subject/subject.controller.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/subject/subject.controller.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -523,7 +777,7 @@
                                         <tr>
                                                 <td>updateSubjectDto</td>
                                             <td>
-                                                            <code><a href="../classes/UpdateSubjectDto.html" target="_self" >UpdateSubjectDto</a></code>
+                                                            <code><a href="../classes/CreateSubjectDto.html" target="_self" >CreateSubjectDto</a></code>
                                             </td>
 
                                             <td>
@@ -550,12 +804,14 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from &#x27;@nestjs/common&#x27;;
 import { SubjectService } from &#x27;./subject.service&#x27;;
 import { CreateSubjectDto } from &#x27;./dto/create-subject.dto&#x27;;
 import { UpdateSubjectDto } from &#x27;./dto/update-subject.dto&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
 @Controller(&#x27;subject&#x27;)
+@ApiTags(&#x27;Subject&#x27;)
 export class SubjectController {
   constructor(private readonly subjectService: SubjectService) {}
 
@@ -564,24 +820,43 @@ export class SubjectController {
     return this.subjectService.create(createSubjectDto);
   }
 
+  @Post(&#x27;all-subjects&#x27;)
+  createAll(@Body() createSubjectDto: CreateSubjectDto[]) {
+    return this.subjectService.createAll(createSubjectDto);
+  }
+
   @Get()
   findAll() {
     return this.subjectService.findAll();
   }
 
+  @Get(&#x27;findByClassId/:classId&#x27;)
+  findByClassId(@Param(&#x27;classId&#x27;) classId: string) {
+    return this.subjectService.findByClassId(classId);
+  }
+
+  @Get(&#x27;findBySubjectNameAndClassId&#x27;)
+  async findBySubjectNameAndClassId(
+    @Query(&#x27;subjectName&#x27;) subjectName: string,
+    @Query(&#x27;classId&#x27;) classId: string,
+  ) {
+    return this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+  }
+
+
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.subjectService.findOne(+id);
+    return this.subjectService.findOne(id);
   }
 
   @Patch(&#x27;:id&#x27;)
-  update(@Param(&#x27;id&#x27;) id: string, @Body() updateSubjectDto: UpdateSubjectDto) {
-    return this.subjectService.update(+id, updateSubjectDto);
+  update(@Param(&#x27;id&#x27;) id: string, @Body() updateSubjectDto: CreateSubjectDto) {
+    return this.subjectService.update(id, updateSubjectDto);
   }
 
   @Delete(&#x27;:id&#x27;)
   remove(@Param(&#x27;id&#x27;) id: string) {
-    return this.subjectService.remove(+id);
+    return this.subjectService.remove(id);
   }
 }
 </code></pre>

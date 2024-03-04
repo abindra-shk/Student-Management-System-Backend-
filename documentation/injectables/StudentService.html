@@ -144,7 +144,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#countStudentsByClass" >countStudentsByClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#countTotalStudents" >countTotalStudents</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createAll" >createAll</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -152,7 +164,23 @@
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#findByClassId" >findByClassId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findOneByUsername" >findOneByUsername</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getGenderCountByClass" >getGenderCountByClass</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getTotalGenderCount" >getTotalGenderCount</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
@@ -180,12 +208,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(studentRepository: <a href="../entitys/Student.html" target="_self">Repository&lt;Student&gt;</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>)</code>
+<code>constructor(studentRepository: <a href="../entitys/Student.html" target="_self">Repository&lt;Student&gt;</a>, userService: <a href="../injectables/UserService.html" target="_self">UserService</a>, classService: <a href="../injectables/ClassService.html" target="_self">ClassService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/student/student.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/student/student.service.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -226,6 +254,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>classService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ClassService.html" target="_self" >ClassService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -240,6 +280,84 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countStudentsByClass"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>countStudentsByClass</b></span>
+                        <a href="#countStudentsByClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>countStudentsByClass()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/student/student.service.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="countTotalStudents"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>countTotalStudents</b></span>
+                        <a href="#countTotalStudents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>countTotalStudents()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/student/student.service.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -262,8 +380,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="17"
-                                    class="link-to-prism">src/student/student.service.ts:17</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/student/student.service.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -313,65 +431,26 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="findAll"></a>
+                    <a name="createAll"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
-                        <span ><b>findAll</b></span>
-                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>createAll</b></span>
+                        <a href="#createAll"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findAll()</code>
+                    <code>createAll(createStudentDtoArray: <a href="../classes/CreateStudentDto.html" target="_self">CreateStudentDto[]</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="41"
-                                    class="link-to-prism">src/student/student.service.ts:41</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="findOne"></a>
-                    <span class="name">
-                            <span class="modifier">Async</span>
-                        <span ><b>findOne</b></span>
-                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="45"
-                                    class="link-to-prism">src/student/student.service.ts:45</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/student/student.service.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -392,9 +471,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>createStudentDtoArray</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="../classes/CreateStudentDto.html" target="_self" >CreateStudentDto[]</a></code>
                                             </td>
 
                                             <td>
@@ -421,6 +500,330 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="findAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findAll</b></span>
+                        <a href="#findAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="80"
+                                    class="link-to-prism">src/student/student.service.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findByClassId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findByClassId</b></span>
+                        <a href="#findByClassId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findByClassId(classId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/student/student.service.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>classId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOne"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOne</b></span>
+                        <a href="#findOne"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/student/student.service.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneByUsername"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findOneByUsername</b></span>
+                        <a href="#findOneByUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="147"
+                                    class="link-to-prism">src/student/student.service.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>username</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getGenderCountByClass"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getGenderCountByClass</b></span>
+                        <a href="#getGenderCountByClass"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getGenderCountByClass()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/student/student.service.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTotalGenderCount"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getTotalGenderCount</b></span>
+                        <a href="#getTotalGenderCount"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getTotalGenderCount()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/student/student.service.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -439,8 +842,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="59"
-                                    class="link-to-prism">src/student/student.service.ts:59</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/student/student.service.ts:172</a></div>
                         </td>
                     </tr>
 
@@ -501,15 +904,15 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id, data)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/CreateStudentDto.html" target="_self">CreateStudentDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/student/student.service.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/student/student.service.ts:155</a></div>
                         </td>
                     </tr>
 
@@ -524,12 +927,16 @@
                                     <thead>
                                         <tr>
                                             <td>Name</td>
+                                                <td>Type</td>
                                             <td>Optional</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                                 <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
                                             <td>
                                                     No
@@ -539,6 +946,9 @@
                                         </tr>
                                         <tr>
                                                 <td>data</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateStudentDto.html" target="_self" >CreateStudentDto</a></code>
+                                            </td>
 
                                             <td>
                                                     No
@@ -573,6 +983,9 @@ import { Student } from &#x27;./entities/student.entity&#x27;; // Make sure to i
 import { UserService } from &#x27;src/user/http/services/user.service&#x27;;
 import { Role } from &#x27;src/user/types&#x27;;
 import { CreateStudentDto } from &#x27;./dto/create-student.dto&#x27;;
+import { Class } from &#x27;src/class/entities/class.entity&#x27;;
+import { ClassService } from &#x27;src/class/class.service&#x27;;
+import { FinalAttendanceService } from &#x27;src/final_attendance/final_attendance.service&#x27;;
 
 @Injectable()
 export class StudentService {
@@ -580,14 +993,19 @@ export class StudentService {
     @InjectRepository(Student)
     private studentRepository: Repository&lt;Student&gt;,
     private readonly userService: UserService,
+    private readonly classService: ClassService,
+    // private readonly finalAttendanceService: FinalAttendanceService,
+
   ) {}
 
   async create(createStudentDto: any) {
+    console.log()
     const user &#x3D; await this.userService.create({
       username: createStudentDto.username,
       password: createStudentDto.password,
       role: Role.student,
     });
+    const classEntity &#x3D; await this.classService.findOneByClassName(createStudentDto.class);
 
     // Create student with the user ID
     const student &#x3D; this.studentRepository.create({
@@ -596,7 +1014,7 @@ export class StudentService {
       gender: createStudentDto.gender,
       dateOfBirth: createStudentDto.dateOfBirth,
       rollNo: createStudentDto.rollNo,
-      className: createStudentDto.className,
+      class: classEntity,
       guardianName: createStudentDto.guardianName,
       guardianPhone: createStudentDto.guardianPhone,
       address: createStudentDto.address,
@@ -606,24 +1024,129 @@ export class StudentService {
     return this.studentRepository.save(student);
   }
 
+  async createAll(createStudentDtoArray: CreateStudentDto[]) {
+    const createdStudents &#x3D; [];
+  
+    for (const createStudentDto of createStudentDtoArray) {
+      const user &#x3D; await this.userService.create({
+        username: createStudentDto.username,
+        password: createStudentDto.password,
+        role: Role.student,
+      });
+      const classEntity &#x3D; await this.classService.findOneByClassName(createStudentDto.class);
+  
+      // Create student with the user ID
+      const student &#x3D; this.studentRepository.create({
+        firstName: createStudentDto.firstName,
+        lastName: createStudentDto.lastName,
+        gender: createStudentDto.gender,
+        dateOfBirth: createStudentDto.dateOfBirth,
+        rollNo: createStudentDto.rollNo,
+        class: classEntity,
+        guardianName: createStudentDto.guardianName,
+        guardianPhone: createStudentDto.guardianPhone,
+        address: createStudentDto.address,
+        user: user.raw[0], // Assign the user entity
+      });
+  
+      createdStudents.push(student);
+    }
+  
+    return this.studentRepository.save(createdStudents);
+  }
+
   async findAll() {
-    return this.studentRepository.createQueryBuilder(&quot;student&quot;).getMany();
+    return this.studentRepository.createQueryBuilder(&quot;student&quot;)
+      .leftJoinAndSelect(&#x27;student.class&#x27;, &#x27;class&#x27;)
+      .leftJoinAndSelect(&#x27;student.user&#x27;, &#x27;user&#x27;)
+      .getMany();
+  }
+  
+  async findOne(id: string) {
+    return this.studentRepository.createQueryBuilder(&#x27;student&#x27;)
+      .leftJoinAndSelect(&#x27;student.class&#x27;, &#x27;class&#x27;)
+      .leftJoinAndSelect(&#x27;student.user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;student.id &#x3D; :id&#x27;, { id })
+      .getOne();
+  }
+  
+
+  async countTotalStudents(){
+    return this.studentRepository.count();
   }
 
-  async findOne(id: number) {
-    return this.studentRepository.findOne({ where: { id: id.toString() } });
+  async countStudentsByClass(){
+    const classCounts &#x3D; await this.studentRepository
+    .createQueryBuilder(&#x27;student&#x27;)
+    .select(&#x27;student.classId as classId, COUNT(*) as count&#x27;)
+    .groupBy(&#x27;student.classId&#x27;)
+    .orderBy(&#x27;student.classId&#x27;)
+    .getRawMany();
+
+  // Log only the &#x27;count&#x27; values
+  console.log(classCounts.map(count &#x3D;&gt; count.count));
+
+  return classCounts;
+  }  
+
+  async findByClassId(classId: string) {
+    return this.studentRepository.createQueryBuilder(&#x27;student&#x27;)
+      .leftJoinAndSelect(&#x27;student.class&#x27;, &#x27;class&#x27;)
+      .leftJoinAndSelect(&#x27;student.user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;class.id &#x3D; :classId&#x27;, { classId })
+      .getMany();
   }
 
-  async update(id, data) {
+  async getGenderCountByClass(): Promise&lt;any&gt; {
+    const result &#x3D; await this.studentRepository
+      .createQueryBuilder(&#x27;student&#x27;)
+      .select(&#x27;COUNT(student.id)&#x27;, &#x27;count&#x27;)
+      .addSelect(&#x27;student.gender&#x27;, &#x27;gender&#x27;)
+      .addSelect(&#x27;student.class&#x27;, &#x27;class&#x27;)
+      .groupBy(&#x27;student.gender&#x27;)
+      .addGroupBy(&#x27;student.class&#x27;)
+      .orderBy(&#x27;student.class&#x27;)
+      .getRawMany();
+
+    return result;
+  }
+
+  async getTotalGenderCount(): Promise&lt;any&gt; {
+    const result &#x3D; await this.studentRepository
+      .createQueryBuilder(&#x27;student&#x27;)
+      .select(&#x27;COUNT(student.id)&#x27;, &#x27;count&#x27;)
+      .addSelect(&#x27;student.gender&#x27;, &#x27;gender&#x27;)
+      .groupBy(&#x27;student.gender&#x27;)
+      .getRawMany();
+
+    return result;
+  }
+
+  async findOneByUsername(username: string){
+    return this.studentRepository
+      .createQueryBuilder(&#x27;student&#x27;)
+      .leftJoinAndSelect(&#x27;student.user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;user.username &#x3D; :username&#x27;, { username })
+      .getOne();
+  }
+  
+  async update(id:string, data:CreateStudentDto) {
+    const { class: className, ...restData } &#x3D; data;
+    const classEntity &#x3D; await this.classService.findOneByClassName(className);
+    if (!classEntity) {
+      throw new NotFoundException(&#x60;Class &#x27;${className}&#x27; not found&#x60;);
+    }
+  
     return this.studentRepository.createQueryBuilder(&quot;user&quot;)
       .update(Student)
-      .where(&quot;user.id&#x3D;:id&quot;, { id: +id })
       .set({
-        ...data
+        ...restData,
+        class: classEntity
       })
+      .where(&quot;user.id&#x3D;:id&quot;, { id: +id })
       .execute();
   }
-
+  
   async remove(id: string) {
     await this.studentRepository.delete(id);
   }

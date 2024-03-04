@@ -150,6 +150,7 @@
                             <li>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#createUser" >createUser</a>
                             </li>
@@ -160,6 +161,10 @@
                             <li>
                                     <span class="modifier"></span>
                                 <a href="#findOne" >findOne</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#findOneByUsername" >findOneByUsername</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
@@ -194,6 +199,7 @@
                     <span class="name">
                             <span class="modifier"></span>
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>createUser</b></span>
                         <a href="#createUser"><span class="icon ion-ios-link"></span></a>
@@ -211,14 +217,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post(&#x27;/user&#x27;)<br />@ResponseMessage(&#x27;User created successfully&#x27;)<br /></code>
+                    <code>@Post(&#x27;/user&#x27;)<br />@ResponseMessage(&#x27;User created successfully&#x27;)<br />@ApiBody({type: CreateUserRequest, description: &#x27;Create user body&#x27;})<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="33"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:33</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -293,8 +299,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -339,8 +345,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="48"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:48</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -362,6 +368,82 @@
                                     <tbody>
                                         <tr>
                                                 <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findOneByUsername"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>findOneByUsername</b></span>
+                        <a href="#findOneByUsername"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOneByUsername(username: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@Get(&#x27;byUsername/:username&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="54"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>username</td>
                                             <td>
                                                             <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
@@ -415,8 +497,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -491,8 +573,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/user/http/controllers/user.controller.ts:64</a></div>
                         </td>
                     </tr>
 
@@ -563,8 +645,10 @@ import { CreateUserExceptionFilter } from &#x27;../exception-filters/create-user
 import { DuplicateUserExceptionFilter } from &#x27;../exception-filters/duplicate-user.exception-filter&#x27;;
 import { CreateUserRequest } from &#x27;../requests/create-user.request&#x27;;
 import { ResponseMessage } from &#x27;src/core/decorators/response.decorator&#x27;;
+import { ApiBody, ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
 @Controller(&#x27;user&#x27;)
+@ApiTags(&#x27;User&#x27;)
 export class UserController {
   constructor(
     private readonly userService: UserService,
@@ -586,6 +670,10 @@ export class UserController {
   // }
   @Post(&quot;/user&quot;)
   @ResponseMessage(&#x27;User created successfully&#x27;)
+  @ApiBody({
+    type: CreateUserRequest,
+    description: &#x27;Create user body&#x27;
+  })
   async createUser(@Body() body: CreateUserRequest) {
     return this.userService.create(body);
   }
@@ -600,9 +688,14 @@ export class UserController {
     return this.userService.findAll();
   }
 
+  @Get(&#x27;byUsername/:username&#x27;)
+  findOneByUsername(@Param(&#x27;username&#x27;) username: string) {
+    return this.userService.findOneByUsername(username);
+  }
+
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne(id);
   }
 
   @Patch(&#x27;:id&#x27;)

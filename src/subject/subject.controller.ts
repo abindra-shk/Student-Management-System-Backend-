@@ -29,6 +29,11 @@ export class SubjectController {
     return this.subjectService.findByClassId(classId);
   }
 
+  @Get('student/:studentId')
+  async getSubjectsByStudentId(@Param('studentId') studentId: string){
+    return this.subjectService.findSubjectsByStudentId(studentId);
+  }
+
   @Get('findBySubjectNameAndClassId')
   async findBySubjectNameAndClassId(
     @Query('subjectName') subjectName: string,

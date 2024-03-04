@@ -175,7 +175,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/authentication/passport/strategy/database.strategy.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/authentication/passport/strategy/database.strategy.ts:12</a></div>
                             </td>
                         </tr>
 
@@ -252,8 +252,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/authentication/passport/strategy/database.strategy.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/authentication/passport/strategy/database.strategy.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -325,6 +325,8 @@ import { PassportStrategy } from &#x27;@nestjs/passport&#x27;;
 import { User } from &#x27;../../../user/entities/user.entity&#x27;;
 import { BcryptService } from &#x27;../../services/bcrypt.service&#x27;;
 
+
+
 @Injectable()
 export class DatabaseStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -348,16 +350,15 @@ export class DatabaseStrategy extends PassportStrategy(Strategy) {
       throw new UnauthorizedException(&#x27;Invalid username or password supplied&#x27;);
     }
 
-    // if (!user.confirmedAt) {
-    //   throw new UnauthorizedException(&#x27;You must accept the invitation before you log in. Please check your email first.&#x27;);
-    // }
-
     if (await this.bcryptService.verifyCredentials(user, password)) {
       return user;
     }
 
     throw new UnauthorizedException(&#x27;Invalid username or password supplied&#x27;);
   }
+
+
+
 }
 </code></pre>
     </div>

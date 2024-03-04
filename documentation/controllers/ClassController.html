@@ -213,8 +213,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/class/class.controller.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="13"
+                                    class="link-to-prism">src/class/class.controller.ts:13</a></div>
                         </td>
                     </tr>
 
@@ -289,8 +289,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/class/class.controller.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="18"
+                                    class="link-to-prism">src/class/class.controller.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -335,8 +335,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="21"
-                                    class="link-to-prism">src/class/class.controller.ts:21</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/class/class.controller.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -411,8 +411,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/class/class.controller.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="33"
+                                    class="link-to-prism">src/class/class.controller.ts:33</a></div>
                         </td>
                     </tr>
 
@@ -473,7 +473,7 @@
             <tr>
                 <td class="col-md-4">
                         <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, updateClassDto: <a href="../classes/UpdateClassDto.html" target="_self">UpdateClassDto</a>)</code>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, createClassDto: <a href="../classes/CreateClassDto.html" target="_self">CreateClassDto</a>)</code>
                 </td>
             </tr>
 
@@ -487,8 +487,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/class/class.controller.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="28"
+                                    class="link-to-prism">src/class/class.controller.ts:28</a></div>
                         </td>
                     </tr>
 
@@ -521,9 +521,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>updateClassDto</td>
+                                                <td>createClassDto</td>
                                             <td>
-                                                            <code><a href="../classes/UpdateClassDto.html" target="_self" >UpdateClassDto</a></code>
+                                                            <code><a href="../classes/CreateClassDto.html" target="_self" >CreateClassDto</a></code>
                                             </td>
 
                                             <td>
@@ -554,8 +554,10 @@
 import { ClassService } from &#x27;./class.service&#x27;;
 import { CreateClassDto } from &#x27;./dto/create-class.dto&#x27;;
 import { UpdateClassDto } from &#x27;./dto/update-class.dto&#x27;;
+import { ApiTags } from &#x27;@nestjs/swagger&#x27;;
 
 @Controller(&#x27;class&#x27;)
+@ApiTags(&#x27;Class&#x27;)
 export class ClassController {
   constructor(private readonly classService: ClassService) {}
 
@@ -571,17 +573,17 @@ export class ClassController {
 
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: string) {
-    return this.classService.findOne(+id);
+    return this.classService.findOne(id);
   }
 
   @Patch(&#x27;:id&#x27;)
-  update(@Param(&#x27;id&#x27;) id: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(+id, updateClassDto);
+  update(@Param(&#x27;id&#x27;) id: string, @Body() createClassDto: CreateClassDto) {
+    return this.classService.update(id, createClassDto);
   }
 
   @Delete(&#x27;:id&#x27;)
   remove(@Param(&#x27;id&#x27;) id: string) {
-    return this.classService.remove(+id);
+    return this.classService.remove(id);
   }
 }
 </code></pre>

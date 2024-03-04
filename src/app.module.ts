@@ -37,7 +37,6 @@ import { AddressModule } from './address/address.module';
     }),
     ScheduleModule.forRoot(),
     ConfigModule.forRoot(),
-    CoreModule,
     UserModule,
     TeacherModule,
     AuthenticationModule,
