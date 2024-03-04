@@ -20,35 +20,6 @@ export class MarksService {
     private studentService: StudentService
   ) {}
 
-  // async create(createMarkDto: CreateMarkDto){
-  //   const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
-
-  //   // Find student
-  //   const student = await this.studentService.findOne(student_id);
-  //   if (!student) {
-  //     throw new Error('Student not found');
-  //   }
-
-  //   // Find subject
-  //   const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
-  //   if (!subject) {
-  //     throw new Error('Subject not found');
-  //   }
-
-  //   // Check if marks obtained is greater than pass marks
-  //   const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
-
-  //   const mark = this.marksRepository.create({
-  //     student,
-  //     subject,
-  //     academicYear,
-  //     marksObtained,
-  //     result
-  //   });
-
-  //   return this.marksRepository.save(mark);
-  // }
-
   async create(createMarkDto: CreateMarkDto){
     const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
 
@@ -85,38 +56,6 @@ export class MarksService {
     return this.marksRepository.save(mark);
 }
 
-  // async createAll(createMarkDtos: CreateMarkDto[]) {
-  //   const marks: Marks[] = [];
-
-  //   for (const createMarkDto of createMarkDtos) {
-  //     const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
-
-
-  //     const student = await this.studentService.findOne(student_id);
-  //     if (!student) {
-  //       throw new Error(`Student with ID ${student_id} not found`);
-  //     }
-
-  //     const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
-  //     if (!subject) {
-  //       throw new Error(`Subject '${subjectName}' not found for class ${classId}`);
-  //     }
-      
-  //     const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
-
-  //     const mark = this.marksRepository.create({
-  //       student,
-  //       subject,
-  //       academicYear,
-  //       marksObtained,
-  //       result,
-  //     });
-
-  //     marks.push(mark);
-  //   }
-
-  //   return this.marksRepository.save(marks);
-  // }
   async createAll(createMarkDtos: CreateMarkDto[]) {
     const response = [];
   
@@ -133,13 +72,8 @@ export class MarksService {
         throw new Error(`Subject '${subjectName}' not found for class ${classId}`);
       }
   
-      let existingMark = await this.marksRepository.findOne({
-        where: {
-          student: student,
-          subject: subject,
-          academicYear: academicYear
-        }
-      });
+      const existingMark = await this.findExistingMark(student_id, subject.id, academicYear);
+      console.log('existingmark',existingMark)
   
       let result: ResultEnum;
       if (existingMark) {
@@ -164,8 +98,6 @@ export class MarksService {
   
     return response;
   }
-  
-  
   
   async findMarksByStudentId(studentId: string) {
     const marks = await this.marksRepository.createQueryBuilder("mark")
@@ -211,9 +143,7 @@ export class MarksService {
     });
   
     return marksByStudent;
-}
-
-
+  }
 
   async findMarksByClassId(classId: string) {
     const marks = await this.marksRepository.createQueryBuilder("mark")
@@ -283,7 +213,6 @@ export class MarksService {
     return this.marksRepository.save(existingMark);
   }
 
-
   async findExistingMark(studentId: string, subjectId: string, academicYear: number) {
     const existingMark = await this.marksRepository.createQueryBuilder("mark")
       .leftJoin("mark.student", "student")
@@ -295,7 +224,7 @@ export class MarksService {
       .getRawOne();
 
     return existingMark;
-}
+  }
 
   async update(id: string, data: CreateMarkDto) {
     const { student_id, subjectName, classId, academicYear, marksObtained } = data;
