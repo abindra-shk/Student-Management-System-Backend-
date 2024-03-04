@@ -152,12 +152,6 @@
                                     <span class="modifier">Async</span>
                                 <a href="#login" >login</a>
                             </li>
-                            <li>
-                                    <span class="modifier"></span>
-                                    <span class="modifier"></span>
-                                    <span class="modifier">Async</span>
-                                <a href="#loginUser" >loginUser</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -318,80 +312,6 @@
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="loginUser"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                            <span class="modifier"></span>
-                            <span class="modifier">Async</span>
-                        <span ><b>loginUser</b></span>
-                        <a href="#loginUser"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>loginUser(req)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Post(&#x27;/me&#x27;)<br />@ApiBody({schema: undefined})<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="110"
-                                    class="link-to-prism">src/authentication/http/controllers/authentication.controller.ts:110</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>req</td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>    <code>unknown</code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>    </div>
 
 
@@ -491,58 +411,58 @@ export class AuthenticationController {
   //   }
   // }
 
-  @Post(&quot;/me&quot;)
-  @ApiBody({
-    schema: {
-      type: &quot;object&quot;,
-      properties: {
-        username: {
-          type: &quot;string&quot;
-        },
-        password: {
-          type: &quot;string&quot;
-        }
-      }
-    }
-  })
-  async loginUser(req) {
-    const user &#x3D; await this.userRepository.findOne({ where: { username: req.username } });
-    const token &#x3D; await this.tokenStorage.generateToken({
-      data: {
-        id: user.id,
-        username: user.username,
-        password: user.password
-      }
-    });
+//   @Post(&quot;/me&quot;)
+//   @ApiBody({
+//     schema: {
+//       type: &quot;object&quot;,
+//       properties: {
+//         username: {
+//           type: &quot;string&quot;
+//         },
+//         password: {
+//           type: &quot;string&quot;
+//         }
+//       }
+//     }
+//   })
+//   async loginUser(req) {
+//     const user &#x3D; await this.userRepository.findOne({ where: { username: req.username } });
+//     const token &#x3D; await this.tokenStorage.generateToken({
+//       data: {
+//         id: user.id,
+//         username: user.username,
+//         password: user.password
+//       }
+//     });
 
 
 
-    if (!user) {
-      throw new HttpException(&quot;User not found&quot;, HttpStatus.UNAUTHORIZED);
-    }
+//     if (!user) {
+//       throw new HttpException(&quot;User not found&quot;, HttpStatus.UNAUTHORIZED);
+//     }
 
 
-    const areEqual &#x3D; await comparePasswords(user.password, req.password);
+//     const areEqual &#x3D; await comparePasswords(user.password, req.password);
 
-    if (!areEqual) {
-      throw new HttpException(
-        &quot;Username or password is incorrect&quot;,
-        HttpStatus.UNAUTHORIZED
-      );
-    } else {
-      return {
-        user: new UserDetailResponse({
-          ...user
-        }),
-        accessToken: token,
-        refreshToken: token, // Todo: will implement later
-        tokenType: &quot;bearer&quot;
-      };
-    }
-  }
+//     if (!areEqual) {
+//       throw new HttpException(
+//         &quot;Username or password is incorrect&quot;,
+//         HttpStatus.UNAUTHORIZED
+//       );
+//     } else {
+//       return {
+//         user: new UserDetailResponse({
+//           ...user
+//         }),
+//         accessToken: token,
+//         refreshToken: token, // Todo: will implement later
+//         tokenType: &quot;bearer&quot;
+//       };
+//     }
+//   }
+// }
+
 }
-
-
 export const comparePasswords &#x3D; async (userPassword, currentPassword) &#x3D;&gt; {
   return await bcrypt.compare(currentPassword, userPassword);
 };

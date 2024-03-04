@@ -143,19 +143,52 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createAll" >createAll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findExistingMark" >findExistingMark</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findMarksByClassId" >findMarksByClassId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#findMarksByStudentId" >findMarksByStudentId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#getPercentageByStudentId" >getPercentageByStudentId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#passPercentageBySubject" >passPercentageBySubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#remove" >remove</a>
                             </li>
                             <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateMarksByStudentId" >updateMarksByStudentId</a>
                             </li>
                         </ul>
                     </td>
@@ -169,6 +202,78 @@
     </table>
 </section>
 
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(marksRepository: <a href="../entitys/Marks.html" target="_self">Repository&lt;Marks&gt;</a>, subjectService: <a href="../injectables/SubjectService.html" target="_self">SubjectService</a>, studentService: <a href="../injectables/StudentService.html" target="_self">StudentService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/marks/marks.service.ts:15</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>marksRepository</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../entitys/Marks.html" target="_self" >Repository&lt;Marks&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>subjectService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SubjectService.html" target="_self" >SubjectService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>studentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StudentService.html" target="_self" >StudentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
             <section data-compodoc="block-methods">
     
@@ -181,6 +286,7 @@
                 <td class="col-md-4">
                     <a name="create"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -188,15 +294,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>create(createMarkDto: <a href="../classes/CreateMarkDto.html" target="_self">CreateMarkDto</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>create(createMarkDto: <a href="../classes/CreateMarkDto.html" target="_self">CreateMarkDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="7"
-                                    class="link-to-prism">src/marks/marks.service.ts:7</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="23"
+                                    class="link-to-prism">src/marks/marks.service.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -232,7 +339,76 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAll"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createAll</b></span>
+                        <a href="#createAll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createAll(createMarkDtos: <a href="../classes/CreateMarkDto.html" target="_self">CreateMarkDto[]</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/marks/marks.service.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createMarkDtos</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateMarkDto.html" target="_self" >CreateMarkDto[]</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -248,6 +424,7 @@
                 <td class="col-md-4">
                     <a name="findAll"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -255,15 +432,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findAll()</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findAll()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="11"
-                                    class="link-to-prism">src/marks/marks.service.ts:11</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/marks/marks.service.ts:303</a></div>
                         </td>
                     </tr>
 
@@ -272,9 +450,240 @@
                 <td class="col-md-4">
 
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findExistingMark"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findExistingMark</b></span>
+                        <a href="#findExistingMark"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findExistingMark(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, subjectId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, academicYear: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/marks/marks.service.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>subjectId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>academicYear</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findMarksByClassId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findMarksByClassId</b></span>
+                        <a href="#findMarksByClassId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findMarksByClassId(classId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/marks/marks.service.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>classId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="findMarksByStudentId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>findMarksByStudentId</b></span>
+                        <a href="#findMarksByStudentId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findMarksByStudentId(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="102"
+                                    class="link-to-prism">src/marks/marks.service.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -285,6 +694,7 @@
                 <td class="col-md-4">
                     <a name="findOne"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -292,15 +702,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>findOne(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="15"
-                                    class="link-to-prism">src/marks/marks.service.ts:15</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/marks/marks.service.ts:307</a></div>
                         </td>
                     </tr>
 
@@ -323,7 +734,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -336,7 +747,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -350,8 +761,117 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getPercentageByStudentId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>getPercentageByStudentId</b></span>
+                        <a href="#getPercentageByStudentId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getPercentageByStudentId(studentId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="263"
+                                    class="link-to-prism">src/marks/marks.service.ts:263</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>studentId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="passPercentageBySubject"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>passPercentageBySubject</b></span>
+                        <a href="#passPercentageBySubject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>passPercentageBySubject()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="283"
+                                    class="link-to-prism">src/marks/marks.service.ts:283</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -359,15 +879,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>remove(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="23"
-                                    class="link-to-prism">src/marks/marks.service.ts:23</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/marks/marks.service.ts:311</a></div>
                         </td>
                     </tr>
 
@@ -390,7 +911,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -403,7 +924,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                         </div>
                             <div class="io-description">
@@ -419,6 +940,7 @@
                 <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
+                            <span class="modifier">Async</span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -426,15 +948,16 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, updateMarkDto: <a href="../classes/UpdateMarkDto.html" target="_self">UpdateMarkDto</a>)</code>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>update(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, data: <a href="../classes/CreateMarkDto.html" target="_self">CreateMarkDto</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="19"
-                                    class="link-to-prism">src/marks/marks.service.ts:19</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="229"
+                                    class="link-to-prism">src/marks/marks.service.ts:229</a></div>
                         </td>
                     </tr>
 
@@ -457,7 +980,7 @@
                                         <tr>
                                                 <td>id</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -467,9 +990,9 @@
 
                                         </tr>
                                         <tr>
-                                                <td>updateMarkDto</td>
+                                                <td>data</td>
                                             <td>
-                                                            <code><a href="../classes/UpdateMarkDto.html" target="_self" >UpdateMarkDto</a></code>
+                                                            <code><a href="../classes/CreateMarkDto.html" target="_self" >CreateMarkDto</a></code>
                                             </td>
 
                                             <td>
@@ -482,7 +1005,76 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMarksByStudentId"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>updateMarksByStudentId</b></span>
+                        <a href="#updateMarksByStudentId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateMarksByStudentId(createMarkDto: <a href="../classes/CreateMarkDto.html" target="_self">CreateMarkDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="185"
+                                    class="link-to-prism">src/marks/marks.service.ts:185</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>createMarkDto</td>
+                                            <td>
+                                                            <code><a href="../classes/CreateMarkDto.html" target="_self" >CreateMarkDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
                         </div>
                             <div class="io-description">
@@ -498,30 +1090,316 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
+import { Repository } from &#x27;typeorm&#x27;;
+
 import { CreateMarkDto } from &#x27;./dto/create-mark.dto&#x27;;
-import { UpdateMarkDto } from &#x27;./dto/update-mark.dto&#x27;;
+import { SubjectService } from &#x27;src/subject/subject.service&#x27;;
+import { StudentService } from &#x27;src/student/student.service&#x27;;
+import { Marks } from &#x27;./entities/mark.entity&#x27;;
+import { ResultEnum } from &#x27;src/common/enums/result.enum&#x27;;
+
 
 @Injectable()
 export class MarksService {
-  create(createMarkDto: CreateMarkDto) {
-    return &#x27;This action adds a new mark&#x27;;
+  constructor(
+    @InjectRepository(Marks)
+    private marksRepository: Repository&lt;Marks&gt;,
+    private subjectService: SubjectService,
+    private studentService: StudentService
+  ) {}
+
+  async create(createMarkDto: CreateMarkDto){
+    const { student_id, subjectName, classId, academicYear, marksObtained } &#x3D; createMarkDto;
+
+    // Find student
+    const student &#x3D; await this.studentService.findOne(student_id);
+    if (!student) {
+      throw new Error(&#x27;Student not found&#x27;);
+    }
+
+    // Find subject
+    const subject &#x3D; await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+    if (!subject) {
+      throw new Error(&#x27;Subject not found&#x27;);
+    }
+
+    // Check if marks obtained is greater than pass marks
+    const result &#x3D; marksObtained &gt;&#x3D; subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+    // Check if the mark already exists
+    const existingMark &#x3D; await this.findExistingMark(student_id, subject.id, academicYear);
+    console.log(&#x27;existingMark&#x27;,existingMark)
+    if (existingMark) {
+      return { message: &#x27;Record already exists&#x27; };
+    }
+  
+    const mark &#x3D; this.marksRepository.create({
+      student,
+      subject,
+      academicYear,
+      marksObtained,
+      result
+    });
+
+    return this.marksRepository.save(mark);
+}
+
+  async createAll(createMarkDtos: CreateMarkDto[]) {
+    const response &#x3D; [];
+  
+    for (const createMarkDto of createMarkDtos) {
+      const { student_id, subjectName, classId, academicYear, marksObtained } &#x3D; createMarkDto;
+  
+      const student &#x3D; await this.studentService.findOne(student_id);
+      if (!student) {
+        throw new Error(&#x60;Student with ID ${student_id} not found&#x60;);
+      }
+  
+      const subject &#x3D; await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+      if (!subject) {
+        throw new Error(&#x60;Subject &#x27;${subjectName}&#x27; not found for class ${classId}&#x60;);
+      }
+  
+      const existingMark &#x3D; await this.findExistingMark(student_id, subject.id, academicYear);
+      console.log(&#x27;existingmark&#x27;,existingMark)
+  
+      let result: ResultEnum;
+      if (existingMark) {
+        existingMark.marksObtained &#x3D; marksObtained;
+        result &#x3D; marksObtained &gt;&#x3D; subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+        existingMark.result &#x3D; result;
+        await this.marksRepository.save(existingMark);
+        response.push({ message: &#x27;Record updated&#x27;, data: existingMark });
+      } else {
+        result &#x3D; marksObtained &gt;&#x3D; subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+        const mark &#x3D; this.marksRepository.create({
+          student,
+          subject,
+          academicYear,
+          marksObtained,
+          result,
+        });
+        await this.marksRepository.save(mark);
+        response.push({ message: &#x27;Record created&#x27;, data: mark });
+      }
+    }
+  
+    return response;
+  }
+  
+  async findMarksByStudentId(studentId: string) {
+    const marks &#x3D; await this.marksRepository.createQueryBuilder(&quot;mark&quot;)
+      .leftJoin(&quot;mark.subject&quot;, &quot;subject&quot;)
+      .leftJoin(&quot;mark.student&quot;, &quot;student&quot;)
+      .leftJoin(&quot;student.class&quot;, &quot;class&quot;)
+      .select([
+        &quot;student.id as studentId&quot;,
+        &quot;student.firstName as firstname&quot;,
+        &quot;student.lastName as lastname&quot;,
+        &quot;mark.academicYear as academicyear&quot;,
+        &quot;subject.subjectName as subjectname&quot;,
+        &quot;mark.marksObtained as marksobtained&quot;,
+        &quot;subject.fullMarks as fullmarks&quot;,
+        &quot;subject.passMarks as passmarks&quot;,
+        &quot;mark.result as result&quot;,
+        &quot;class.className as classname&quot;
+      ])
+      .where(&quot;student.id &#x3D; :studentId&quot;, { studentId })
+      .orderBy(&quot;mark.academicYear&quot;, &quot;DESC&quot;)
+      .getRawMany();
+    console.log(&#x27;marks&#x27;,marks)
+    // Group marks by student
+    const marksByStudent &#x3D; {
+      studentid:&#x27;&#x27;,
+      firstname: &#x27;&#x27;,
+      lastname:&#x27;&#x27;,
+      classname:&#x27;&#x27;,
+      academicYears: {}
+    };
+
+    marks.forEach(mark &#x3D;&gt; {
+      const { studentid, firstname,lastname,classname, academicyear, subjectname, marksobtained, fullmarks, passmarks,result } &#x3D; mark;
+      marksByStudent.studentid &#x3D; studentid;
+      marksByStudent.firstname &#x3D; firstname;
+      marksByStudent.lastname &#x3D; lastname;
+      marksByStudent.classname &#x3D; classname;
+
+      if (!marksByStudent.academicYears[academicyear]) {
+        marksByStudent.academicYears[academicyear] &#x3D; [];
+      }
+      marksByStudent.academicYears[academicyear].push({ subjectname, marksobtained, fullmarks, passmarks,result });
+    });
+  
+    return marksByStudent;
   }
 
-  findAll() {
-    return &#x60;This action returns all marks&#x60;;
+  async findMarksByClassId(classId: string) {
+    const marks &#x3D; await this.marksRepository.createQueryBuilder(&quot;mark&quot;)
+      .leftJoin(&quot;mark.subject&quot;, &quot;subject&quot;)
+      .leftJoin(&quot;mark.student&quot;, &quot;student&quot;)
+      .leftJoin(&quot;student.class&quot;, &quot;class&quot;)
+      .select([
+        &quot;student.id as studentId&quot;,
+        &quot;student.firstName as studentName&quot;,
+        &quot;class.className as className&quot;,
+        &quot;mark.academicYear as academicyear&quot;,
+        &quot;subject.subjectName as subjectname&quot;,
+        &quot;mark.marksObtained as marksobtained&quot;,
+        &quot;mark.result as result&quot;,
+        &quot;subject.fullMarks as fullmarks&quot;,
+        &quot;subject.passMarks as passmarks&quot;
+      ])
+      .where(&quot;class.id &#x3D; :classId&quot;, { classId })
+      .orderBy(&quot;student.id&quot;)
+      .addOrderBy(&quot;mark.academicYear&quot;)
+      .getRawMany();
+  console.log(&#x27;marks&#x27;,marks)
+    // Group marks by student
+    const marksByStudent &#x3D; {};
+    marks.forEach(mark &#x3D;&gt; {
+      const { studentid, studentname,classname,academicyear, subjectname, marksobtained, fullmarks, passmarks,result  } &#x3D; mark;
+      if (!marksByStudent[studentid]) {
+        marksByStudent[studentid] &#x3D; { studentid, studentname,classname, academicYears: {} };
+      }
+      if (!marksByStudent[studentid].academicYears[academicyear]) {
+        marksByStudent[studentid].academicYears[academicyear] &#x3D; [];
+      }
+      marksByStudent[studentid].academicYears[academicyear].push({subjectname, marksobtained, fullmarks, passmarks,result });
+    });
+  
+    return marksByStudent;
+  }
+  
+  async updateMarksByStudentId(createMarkDto: CreateMarkDto) {
+    const { student_id, subjectName, classId, academicYear, marksObtained } &#x3D; createMarkDto;
+
+    // Find student
+    const student &#x3D; await this.studentService.findOne(student_id);
+    if (!student) {
+      throw new Error(&#x27;Student not found&#x27;);
+    }
+
+    // Find subject
+    const subject &#x3D; await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+    if (!subject) {
+      throw new Error(&#x27;Subject not found&#x27;);
+    }
+
+    // Check if marks obtained is greater than pass marks
+    const result &#x3D; marksObtained &gt;&#x3D; subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+    // Find the existing mark
+    const existingMark &#x3D; await this.findExistingMark(student_id, subject.id, academicYear);
+    if (!existingMark) {
+      throw new Error(&#x27;Record not found&#x27;);
+    }
+
+    // Update marks obtained
+    existingMark.marksObtained &#x3D; marksObtained;
+    existingMark.result &#x3D; result;
+
+    return this.marksRepository.save(existingMark);
   }
 
-  findOne(id: number) {
-    return &#x60;This action returns a #${id} mark&#x60;;
+  async findExistingMark(studentId: string, subjectId: string, academicYear: number) {
+    const existingMark &#x3D; await this.marksRepository.createQueryBuilder(&quot;mark&quot;)
+      .leftJoin(&quot;mark.student&quot;, &quot;student&quot;)
+      .leftJoin(&quot;mark.subject&quot;, &quot;subject&quot;)
+      .select(&quot;mark.id&quot;, &quot;id&quot;)
+      .where(&quot;student.id &#x3D; :studentId&quot;, { studentId })
+      .andWhere(&quot;subject.id &#x3D; :subjectId&quot;, { subjectId })
+      .andWhere(&quot;mark.academicYear &#x3D; :academicYear&quot;, { academicYear })
+      .getRawOne();
+
+    return existingMark;
   }
 
-  update(id: number, updateMarkDto: UpdateMarkDto) {
-    return &#x60;This action updates a #${id} mark&#x60;;
+  async update(id: string, data: CreateMarkDto) {
+    const { student_id, subjectName, classId, academicYear, marksObtained } &#x3D; data;
+
+    // Find student
+    const student &#x3D; await this.studentService.findOne(student_id);
+    if (!student) {
+      throw new NotFoundException(&#x60;Student with ID ${student_id} not found&#x60;);
+    }
+
+    // Find subject
+    const subject &#x3D; await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+    if (!subject) {
+      throw new NotFoundException(&#x60;Subject &#x27;${subjectName}&#x27; not found for class ${classId}&#x60;);
+    }
+
+    // Check if marks obtained is greater than pass marks
+    const result &#x3D; marksObtained &gt;&#x3D; subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+    // Find the mark to update
+    const mark &#x3D; await this.marksRepository.findOne({ where: { id: id } });
+    if (!mark) {
+      throw new NotFoundException(&#x60;Mark with ID ${id} not found&#x60;);
+    }
+
+    // Update mark properties
+    mark.student &#x3D; student;
+    mark.subject &#x3D; subject;
+    mark.academicYear &#x3D; academicYear;
+    mark.marksObtained &#x3D; marksObtained;
+    mark.result &#x3D; result;
+
+    return this.marksRepository.save(mark);
   }
 
-  remove(id: number) {
-    return &#x60;This action removes a #${id} mark&#x60;;
+  async getPercentageByStudentId(studentId: string){
+    const marksByYearQuery &#x3D; this.marksRepository.createQueryBuilder(&#x27;marks&#x27;)
+      .innerJoin(&#x27;marks.subject&#x27;, &#x27;subject&#x27;)
+      .select(&#x27;marks.academicYear&#x27;, &#x27;academicYear&#x27;)
+      .addSelect(&#x27;SUM(marks.marksObtained)&#x27;, &#x27;totalMarks&#x27;)
+      .addSelect(&#x27;SUM(subject.fullMarks)&#x27;, &#x27;totalFullMarks&#x27;)
+      .where(&#x27;marks.student &#x3D; :studentId&#x27;, { studentId })
+      .groupBy(&#x27;marks.academicYear&#x27;)
+      .orderBy(&#x27;marks.academicYear&#x27;, &#x27;ASC&#x27;);
+
+    const marksByYear &#x3D; await marksByYearQuery.getRawMany();
+
+    const percentages &#x3D; marksByYear.map(row &#x3D;&gt; ({
+      academicYear: parseInt(row.academicYear),
+      percentage: (row.totalMarks / row.totalFullMarks) * 100,
+    }));
+
+    return percentages;
+  }
+
+  async passPercentageBySubject(): Promise&lt;any&gt; {
+    const passPercentageResults &#x3D; await this.marksRepository
+      .createQueryBuilder(&#x27;marks&#x27;)
+      .select([
+        &#x27;marks.subjectId&#x27;,
+        &#x27;subject.subjectName&#x27;,
+        &#x27;ARRAY_AGG(DISTINCT marks.academicYear) as academicYears&#x27;,
+        &#x27;ARRAY_AGG(COUNT(*)) as totalStudents&#x27;,
+        &#x27;ARRAY_AGG(CASE WHEN marks.result &#x3D; \&#x27;PASS\&#x27; THEN 1 ELSE 0 END) as passedStudents&#x27;,
+        &#x27;ARRAY_AGG(CASE WHEN marks.result &#x3D; \&#x27;PASS\&#x27; THEN 1 ELSE 0 END) / COUNT(*) * 100 as passPercentage&#x27;,
+      ])
+      .leftJoin(&#x27;marks.subject&#x27;, &#x27;subject&#x27;)
+      .groupBy(&#x27;marks.subjectId, subject.subjectName&#x27;)
+      .orderBy(&#x27;marks.subjectId&#x27;)
+      .getRawMany();
+
+    return passPercentageResults;
+  }
+
+
+  async findAll(){
+    return this.marksRepository.find();
+  }
+
+  async findOne(id: string){
+    return this.marksRepository.findOne({ where: { id: id } });
+  }
+
+  async remove(id: string){
+    await this.marksRepository.delete(id);
   }
 }
 </code></pre>

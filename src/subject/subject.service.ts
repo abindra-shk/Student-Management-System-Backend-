@@ -5,13 +5,15 @@ import { Subject } from './entities/subject.entity';
 import { CreateSubjectDto } from './dto/create-subject.dto';
 import { UpdateSubjectDto } from './dto/update-subject.dto';
 import { ClassService } from 'src/class/class.service';
+import { StudentService } from 'src/student/student.service';
 
 @Injectable()
 export class SubjectService {
   constructor(
     @InjectRepository(Subject)
     private subjectRepository: Repository<Subject>,
-    private classService: ClassService 
+    private classService: ClassService,
+    private studentService: StudentService
   ) {}
 
   async create(createSubjectDto: any) {
@@ -71,6 +73,26 @@ export class SubjectService {
       .andWhere('subject.classId = :classId', { classId })
       .leftJoinAndSelect('subject.class', 'class')
       .getOne();
+  }
+
+  async findSubjectsByStudentId(studentId: string): Promise<Subject[]> {
+    // Find the student by ID
+    const student = await this.studentService.findOne(studentId)
+
+    if (!student) {
+      throw new Error(`Student with ID ${studentId} not found`);
+    }
+
+    // Get the class ID from the student entity
+    const classId = student.class.id;
+
+    // Query subjects based on the class ID
+    const subjects = await this.subjectRepository
+      .createQueryBuilder('subject')
+      .where('subject.class.id = :classId', { classId })
+      .getMany();
+
+    return subjects;
   }
 
   async findOne(id: string) {
