@@ -85,8 +85,13 @@ export class StudentService {
   }
   
   async findOne(id: string) {
-    return this.studentRepository.findOne({ where: { id: id } });
+    return this.studentRepository.createQueryBuilder('student')
+      .leftJoinAndSelect('student.class', 'class')
+      .leftJoinAndSelect('student.user', 'user')
+      .where('student.id = :id', { id })
+      .getOne();
   }
+  
 
   async countTotalStudents(){
     return this.studentRepository.count();

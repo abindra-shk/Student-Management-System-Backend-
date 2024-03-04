@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAttendanceLogDto } from './dto/create-attendance.dto';
 import { AttendanceLog } from './entities/attendance.entity';
+import { StudentService } from 'src/student/student.service';
 
 
 @Injectable()
@@ -12,6 +13,8 @@ export class AttendanceLogService {
   constructor(
     @InjectRepository(AttendanceLog)
     private attendanceLogRepository: Repository<AttendanceLog>,
+    private readonly studentService: StudentService,
+
   ) {}
 
   async create(createAttendanceLogDto: CreateAttendanceLogDto) {
@@ -27,6 +30,24 @@ export class AttendanceLogService {
       createdAttendanceLogs.push(createdAttendanceLog);
     }
     return createdAttendanceLogs;
+  }
+
+  async getAttendanceLogByStudentId(studentId: string) {
+    // Retrieve student with class and user information
+    const student = await this.studentService.findOne(studentId);
+    if (!student) {
+      // Handle student not found
+      return null;
+    }
+
+    // Retrieve username from the student's user entity
+    const { user } = student;
+    const username = user ? user.username : null;
+
+    // Query attendance log records based on the retrieved username
+    return this.attendanceLogRepository.find({
+      where: { username },
+    });
   }
 
   async findAll() {

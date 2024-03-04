@@ -172,12 +172,12 @@ export class MarksService {
         "student.id as studentId",
         "student.firstName as studentName",
         "class.className as className",
-        "mark.academicYear",
-        "subject.subjectName",
-        "mark.marksObtained",
+        "mark.academicYear as academicyear",
+        "subject.subjectName as subjectname",
+        "mark.marksObtained as marksobtained",
         "mark.result as result",
-        "subject.fullMarks",
-        "subject.passMarks"
+        "subject.fullMarks as fullmarks",
+        "subject.passMarks as passmarks"
       ])
       .where("class.id = :classId", { classId })
       .orderBy("student.id")
@@ -187,14 +187,14 @@ export class MarksService {
     // Group marks by student
     const marksByStudent = {};
     marks.forEach(mark => {
-      const { studentid, studentname,classname, mark_academicYear, subject_subjectName, mark_marksObtained, subject_fullMarks, subject_passMarks,result } = mark;
+      const { studentid, studentname,classname,academicyear, subjectname, marksobtained, fullmarks, passmarks,result  } = mark;
       if (!marksByStudent[studentid]) {
         marksByStudent[studentid] = { studentid, studentname,classname, academicYears: {} };
       }
-      if (!marksByStudent[studentid].academicYears[mark_academicYear]) {
-        marksByStudent[studentid].academicYears[mark_academicYear] = [];
+      if (!marksByStudent[studentid].academicYears[academicyear]) {
+        marksByStudent[studentid].academicYears[academicyear] = [];
       }
-      marksByStudent[studentid].academicYears[mark_academicYear].push({ subject_subjectName, mark_marksObtained, subject_fullMarks, subject_passMarks,result });
+      marksByStudent[studentid].academicYears[academicyear].push({subjectname, marksobtained, fullmarks, passmarks,result });
     });
   
     return marksByStudent;
