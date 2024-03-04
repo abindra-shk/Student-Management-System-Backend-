@@ -125,7 +125,8 @@ export class MarksService {
       .leftJoin("student.class", "class")
       .select([
         "student.id as studentId",
-        "student.firstName as studentName",
+        "student.firstName as firstname",
+        "student.lastName as lastname",
         "mark.academicYear as academicyear",
         "subject.subjectName as subjectname",
         "mark.marksObtained as marksobtained",
@@ -141,15 +142,17 @@ export class MarksService {
     // Group marks by student
     const marksByStudent = {
       studentid:'',
-      studentname: '',
+      firstname: '',
+      lastname:'',
       classname:'',
       academicYears: {}
     };
 
     marks.forEach(mark => {
-      const { studentid, studentname,classname, academicyear, subjectname, marksobtained, fullmarks, passmarks,result } = mark;
+      const { studentid, firstname,lastname,classname, academicyear, subjectname, marksobtained, fullmarks, passmarks,result } = mark;
       marksByStudent.studentid = studentid;
-      marksByStudent.studentname = studentname;
+      marksByStudent.firstname = firstname;
+      marksByStudent.lastname = lastname;
       marksByStudent.classname = classname;
 
       if (!marksByStudent.academicYears[academicyear]) {
@@ -296,6 +299,21 @@ export class MarksService {
     }));
 
     return percentages;
+  }
+
+  async passPercentageBySubject(){
+    return this.marksRepository
+      .createQueryBuilder('mark')
+      .select('subject.id', 'subjectId')
+      .addSelect('subject.subjectName', 'subjectName')
+      .addSelect('mark.academicYear', 'academicYear')
+      .addSelect('COUNT(mark.id)', 'totalStudents')
+      .addSelect('SUM(CASE WHEN mark.result = :pass THEN 1 ELSE 0 END)', 'passedStudents')
+      .addSelect('ROUND((SUM(CASE WHEN mark.result = :pass THEN 1 ELSE 0 END) / COUNT(mark.id)) * 100, 2)', 'passPercentage')
+      .leftJoin('mark.subject', 'subject')
+      .groupBy('subject.id, subject.subjectName, mark.academicYear')
+      .setParameter('pass', 'PASS')
+      .getRawMany();
   }
 
   async findAll(){
