@@ -34,7 +34,11 @@ export class AttendanceLogController {
     return this.attendanceLogService.getAttendanceLogByStudentId(studentid);
   }
 
-
+  @Get('byusername/:username')
+  async findByUsername(@Param('username') username: string) {
+    return this.attendanceLogService.findByUsername(username);
+  }
+  
   @Delete(':username/:date')
   async remove(@Param('username') username: string, @Param('date') date: Date) {
     return this.attendanceLogService.remove(username, date);

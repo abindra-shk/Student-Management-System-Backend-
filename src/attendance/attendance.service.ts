@@ -50,6 +50,14 @@ export class AttendanceLogService {
     });
   }
 
+  async findByUsername(username: string) {
+    return this.attendanceLogRepository
+      .createQueryBuilder('attendanceLog')
+      .where('attendanceLog.username = :username', { username })
+      .getMany();
+  }
+
+
   async findAll() {
     return this.attendanceLogRepository.find();
   }
