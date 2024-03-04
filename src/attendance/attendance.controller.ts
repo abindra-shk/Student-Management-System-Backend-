@@ -29,10 +29,10 @@ export class AttendanceLogController {
     return this.attendanceLogService.findByDate(date);
   }
 
-  // @Get(':username/:date')
-  // async findOne(@Param('username') username: string, @Param('date') date: Date){
-  //   return this.attendanceLogService.findOne(username, date);
-  // }
+  @Get('student/:studentid')
+  async findOne(@Param('studentid') studentid: string,){
+    return this.attendanceLogService.getAttendanceLogByStudentId(studentid);
+  }
 
 
   @Delete(':username/:date')
