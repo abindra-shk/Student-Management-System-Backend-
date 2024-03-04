@@ -41,6 +41,11 @@ export class MarksController {
     }
   }
 
+  @Get('class/:classId')
+  async getMarksByClassId(@Param('classId') classId: string) {
+    return this.marksService.findMarksByClassId(classId);
+  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {

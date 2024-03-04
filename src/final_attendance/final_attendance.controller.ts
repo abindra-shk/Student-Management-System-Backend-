@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { FinalAttendanceService } from './final_attendance.service';
 
 @Controller('final-attendance')
@@ -19,5 +19,10 @@ export class FinalAttendanceController {
   @Get('AttendanceByDateAndClass')
   async getAttendanceByDateAndClass(){
     return await this.finalAttendanceService.getTotalAttendanceByClassAndDate();
+  }
+
+  @Get('student/:studentId')
+  async getFinalAttendanceByStudentId(@Param('studentId') studentId: string) {
+    return this.finalAttendanceService.getFinalAttendanceByStudentId(studentId);
   }
 }

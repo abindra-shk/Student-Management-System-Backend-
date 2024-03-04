@@ -4,7 +4,7 @@ import { ResultEnum } from 'src/common/enums/result.enum';
 
 export class CreateMarkDto {
   @IsNotEmpty()
-  studentId: string;
+  student_id: string;
 
   @IsString()
   subjectName: string;

@@ -20,11 +20,40 @@ export class MarksService {
     private studentService: StudentService
   ) {}
 
+  // async create(createMarkDto: CreateMarkDto){
+  //   const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
+
+  //   // Find student
+  //   const student = await this.studentService.findOne(student_id);
+  //   if (!student) {
+  //     throw new Error('Student not found');
+  //   }
+
+  //   // Find subject
+  //   const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+  //   if (!subject) {
+  //     throw new Error('Subject not found');
+  //   }
+
+  //   // Check if marks obtained is greater than pass marks
+  //   const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+  //   const mark = this.marksRepository.create({
+  //     student,
+  //     subject,
+  //     academicYear,
+  //     marksObtained,
+  //     result
+  //   });
+
+  //   return this.marksRepository.save(mark);
+  // }
+
   async create(createMarkDto: CreateMarkDto){
-    const { studentId, subjectName, classId, academicYear, marksObtained } = createMarkDto;
+    const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
 
     // Find student
-    const student = await this.studentService.findOne(studentId);
+    const student = await this.studentService.findOne(student_id);
     if (!student) {
       throw new Error('Student not found');
     }
@@ -38,6 +67,13 @@ export class MarksService {
     // Check if marks obtained is greater than pass marks
     const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
 
+    // Check if the mark already exists
+    const existingMark = await this.findExistingMark(student_id, subject.id, academicYear);
+    console.log('existingMark',existingMark)
+    if (existingMark) {
+      return { message: 'Record already exists' };
+    }
+  
     const mark = this.marksRepository.create({
       student,
       subject,
@@ -47,18 +83,18 @@ export class MarksService {
     });
 
     return this.marksRepository.save(mark);
-  }
+}
 
   async createAll(createMarkDtos: CreateMarkDto[]) {
     const marks: Marks[] = [];
 
     for (const createMarkDto of createMarkDtos) {
-      const { studentId, subjectName, classId, academicYear, marksObtained } = createMarkDto;
+      const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
 
 
-      const student = await this.studentService.findOne(studentId);
+      const student = await this.studentService.findOne(student_id);
       if (!student) {
-        throw new Error(`Student with ID ${studentId} not found`);
+        throw new Error(`Student with ID ${student_id} not found`);
       }
 
       const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
@@ -83,21 +119,99 @@ export class MarksService {
   }
   
   async findMarksByStudentId(studentId: string) {
-    const student = await this.studentService.findOne(studentId);
-    if (!student) {
-      throw new NotFoundException(`Student with ID ${studentId} not found`);
-    }
-    return this.marksRepository.createQueryBuilder("mark")
+    const marks = await this.marksRepository.createQueryBuilder("mark")
       .leftJoin("mark.subject", "subject")
-      .select("subject.subjectName", "subjectName")
-      .addSelect("subject.fullMarks", "fullMarks")
-      .addSelect("subject.passMarks", "passMarks")
-      .addSelect("mark.marksObtained", "marksObtained")
-      .addSelect("mark.academicYear", "academicYear")
-      .addSelect("mark.result", "result")
-      .where("mark.student = :studentId", { studentId })
+      .leftJoin("mark.student", "student")
+      .leftJoin("student.class", "class")
+      .select([
+        "student.id as studentId",
+        "student.firstName as studentName",
+        "mark.academicYear as academicyear",
+        "subject.subjectName as subjectname",
+        "mark.marksObtained as marksobtained",
+        "subject.fullMarks as fullmarks",
+        "subject.passMarks as passmarks",
+        "mark.result as result",
+        "class.className as classname"
+      ])
+      .where("student.id = :studentId", { studentId })
+      .orderBy("mark.academicYear", "DESC")
       .getRawMany();
+    console.log('marks',marks)
+    // Group marks by student
+    const marksByStudent = {
+      studentid:'',
+      studentname: '',
+      classname:'',
+      academicYears: {}
+    };
+
+    marks.forEach(mark => {
+      const { studentid, studentname,classname, academicyear, subjectname, marksobtained, fullmarks, passmarks,result } = mark;
+      marksByStudent.studentid = studentid;
+      marksByStudent.studentname = studentname;
+      marksByStudent.classname = classname;
+
+      if (!marksByStudent.academicYears[academicyear]) {
+        marksByStudent.academicYears[academicyear] = [];
+      }
+      marksByStudent.academicYears[academicyear].push({ subjectname, marksobtained, fullmarks, passmarks,result });
+    });
+  
+    return marksByStudent;
+}
+
+
+
+  async findMarksByClassId(classId: string) {
+    const marks = await this.marksRepository.createQueryBuilder("mark")
+      .leftJoin("mark.subject", "subject")
+      .leftJoin("mark.student", "student")
+      .leftJoin("student.class", "class")
+      .select([
+        "student.id as studentId",
+        "student.firstName as studentName",
+        "class.className as className",
+        "mark.academicYear",
+        "subject.subjectName",
+        "mark.marksObtained",
+        "mark.result as result",
+        "subject.fullMarks",
+        "subject.passMarks"
+      ])
+      .where("class.id = :classId", { classId })
+      .orderBy("student.id")
+      .addOrderBy("mark.academicYear")
+      .getRawMany();
+  console.log('marks',marks)
+    // Group marks by student
+    const marksByStudent = {};
+    marks.forEach(mark => {
+      const { studentid, studentname,classname, mark_academicYear, subject_subjectName, mark_marksObtained, subject_fullMarks, subject_passMarks,result } = mark;
+      if (!marksByStudent[studentid]) {
+        marksByStudent[studentid] = { studentid, studentname,classname, academicYears: {} };
+      }
+      if (!marksByStudent[studentid].academicYears[mark_academicYear]) {
+        marksByStudent[studentid].academicYears[mark_academicYear] = [];
+      }
+      marksByStudent[studentid].academicYears[mark_academicYear].push({ subject_subjectName, mark_marksObtained, subject_fullMarks, subject_passMarks,result });
+    });
+  
+    return marksByStudent;
   }
+  
+  async findExistingMark(studentId: string, subjectId: string, academicYear: number) {
+    const existingMark = await this.marksRepository.createQueryBuilder("mark")
+      .leftJoin("mark.student", "student")
+      .leftJoin("mark.subject", "subject")
+      .select("mark.id", "id")
+      .where("student.id = :studentId", { studentId })
+      .andWhere("subject.id = :subjectId", { subjectId })
+      .andWhere("mark.academicYear = :academicYear", { academicYear })
+      .getRawOne();
+
+    return existingMark;
+}
 
   async findAll(){
     return this.marksRepository.find();
