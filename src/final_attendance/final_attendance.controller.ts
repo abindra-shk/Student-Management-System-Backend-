@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { FinalAttendanceService } from './final_attendance.service';
 
 @Controller('final-attendance')
@@ -11,6 +11,15 @@ export class FinalAttendanceController {
     return 'Attendance aggregation triggered successfully!';
   }
 
+  @Post('aggregate/:username')
+  async aggregateAttendanceData(@Param('username') username: string) {
+    try {
+      await this.finalAttendanceService.aggregateAttendance(username);
+      return { success: true, message: 'Attendance data aggregated successfully.' };
+    } catch (error) {
+      return { success: false, message: 'Failed to aggregate attendance data.', error };
+    }
+  }
   @Get('top-attendance')
   async getTopAttendeesByClass(){
     return await this.finalAttendanceService.getTopAttendeesByClass(); 

@@ -68,6 +68,11 @@ export class MarksController {
     }
   }
 
+  @Get('percentage/:studentId')
+  async getPercentageByStudentId(@Param('studentId') studentId: string){
+    return this.marksService.getPercentageByStudentId(studentId);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.marksService.findOne(id);

@@ -45,9 +45,11 @@ export class AttendanceLogService {
     const username = user ? user.username : null;
 
     // Query attendance log records based on the retrieved username
-    return this.attendanceLogRepository.find({
-      where: { username },
-    });
+    return this.attendanceLogRepository
+    .createQueryBuilder('attendanceLog')
+    .where('attendanceLog.username = :username', { username })
+    .orderBy('attendanceLog.date', 'DESC')
+    .getMany();
   }
 
   async findByUsername(username: string) {

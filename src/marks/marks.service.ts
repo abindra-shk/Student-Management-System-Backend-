@@ -245,40 +245,58 @@ export class MarksService {
     return existingMark;
 }
 
-async update(id: string, data: CreateMarkDto) {
-  const { student_id, subjectName, classId, academicYear, marksObtained } = data;
+  async update(id: string, data: CreateMarkDto) {
+    const { student_id, subjectName, classId, academicYear, marksObtained } = data;
 
-  // Find student
-  const student = await this.studentService.findOne(student_id);
-  if (!student) {
-    throw new NotFoundException(`Student with ID ${student_id} not found`);
+    // Find student
+    const student = await this.studentService.findOne(student_id);
+    if (!student) {
+      throw new NotFoundException(`Student with ID ${student_id} not found`);
+    }
+
+    // Find subject
+    const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+    if (!subject) {
+      throw new NotFoundException(`Subject '${subjectName}' not found for class ${classId}`);
+    }
+
+    // Check if marks obtained is greater than pass marks
+    const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+    // Find the mark to update
+    const mark = await this.marksRepository.findOne({ where: { id: id } });
+    if (!mark) {
+      throw new NotFoundException(`Mark with ID ${id} not found`);
+    }
+
+    // Update mark properties
+    mark.student = student;
+    mark.subject = subject;
+    mark.academicYear = academicYear;
+    mark.marksObtained = marksObtained;
+    mark.result = result;
+
+    return this.marksRepository.save(mark);
   }
 
-  // Find subject
-  const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
-  if (!subject) {
-    throw new NotFoundException(`Subject '${subjectName}' not found for class ${classId}`);
+  async getPercentageByStudentId(studentId: string){
+    const marksByYearQuery = this.marksRepository.createQueryBuilder('marks')
+      .innerJoin('marks.subject', 'subject')
+      .select('marks.academicYear', 'academicYear')
+      .addSelect('SUM(marks.marksObtained)', 'totalMarks')
+      .addSelect('SUM(subject.fullMarks)', 'totalFullMarks')
+      .where('marks.student = :studentId', { studentId })
+      .groupBy('marks.academicYear');
+
+    const marksByYear = await marksByYearQuery.getRawMany();
+
+    const percentages = marksByYear.map(row => ({
+      academicYear: parseInt(row.academicYear),
+      percentage: (row.totalMarks / row.totalFullMarks) * 100,
+    }));
+
+    return percentages;
   }
-
-  // Check if marks obtained is greater than pass marks
-  const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
-
-  // Find the mark to update
-  const mark = await this.marksRepository.findOne({ where: { id: id } });
-  if (!mark) {
-    throw new NotFoundException(`Mark with ID ${id} not found`);
-  }
-
-  // Update mark properties
-  mark.student = student;
-  mark.subject = subject;
-  mark.academicYear = academicYear;
-  mark.marksObtained = marksObtained;
-  mark.result = result;
-
-  return this.marksRepository.save(mark);
-}
-
 
   async findAll(){
     return this.marksRepository.find();
