@@ -1,6 +1,6 @@
 // mark.controller.ts
 
-import { Controller, Get, Post, Body, Param, Delete, Query, NotFoundException, InternalServerErrorException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Query, NotFoundException, InternalServerErrorException, Patch } from '@nestjs/common';
 import { MarksService } from './marks.service';
 import { CreateMarkDto } from './dto/create-mark.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -13,6 +13,15 @@ export class MarksController {
   @Post()
   create(@Body() createMarkDto: CreateMarkDto) {
     return this.marksService.create(createMarkDto);
+  }
+  @Patch()
+  async update(@Body() createMarkDto: CreateMarkDto) {
+    try {
+      const updatedMark = await this.marksService.updateMarksByStudentId(createMarkDto);
+      return { success: true, data: updatedMark };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
   }
 
   @Post('allmarks')
@@ -46,6 +55,18 @@ export class MarksController {
     return this.marksService.findMarksByClassId(classId);
   }
 
+  @Patch(':id')
+  async updateMarksById(@Param('id') id: string, @Body() updateMarkDto: CreateMarkDto) {
+    try {
+      const updatedMark = await this.marksService.update(id, updateMarkDto);
+      if (!updatedMark) {
+        throw new NotFoundException('Mark not found');
+      }
+      return { success: true, data: updatedMark };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

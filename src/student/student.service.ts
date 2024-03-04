@@ -139,86 +139,6 @@ export class StudentService {
     return result;
   }
 
- 
-//   async getTopAttendeesByClass() {
-//     const topAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
-//     const topAttendeesByClass = {};
-
-//     for (const attendee of topAttendees) {
-//         const userId = attendee.userId;
-//         const student = await this.studentRepository
-//             .createQueryBuilder('student')
-//             .leftJoin('student.user', 'user')
-//             .leftJoinAndSelect('student.class', 'class')
-//             .where('user.id = :userId', { userId: userId })
-//             .getOne();
-
-//         if (student) {
-//             const className = student.class.id;
-
-//             if (!topAttendeesByClass[className]) {
-//                 topAttendeesByClass[className] = [];
-//             }
-
-//             topAttendeesByClass[className].push({
-//                 userId: userId,
-//                 firstName: student.firstName,
-//                 lastName: student.lastName,
-//                 gender: student.gender,
-//                 rollNo: student.rollNo,
-//                 guardianName: student.guardianName,
-//                 guardianPhone: student.guardianPhone,
-//                 address: student.address,
-//                 presentAttendanceCount: attendee.count,
-//             });
-//         }
-//     }
-
-//     return topAttendeesByClass;
-// }
-  // async getTopAttendeesByClass() {
-  //   const topPresentAttendees = await this.finalAttendanceService.getTopAttendanceLogs();
-  //   const topAbsentAttendees = await this.finalAttendanceService.getTopAbsentAttendanceLogs();
-  //   const topAttendeesByClass = {};
-
-  //   for (const attendee of topPresentAttendees) {
-  //       const userId = attendee.userId;
-  //       const student = await this.studentRepository
-  //           .createQueryBuilder('student')
-  //           .leftJoin('student.user', 'user')
-  //           .leftJoinAndSelect('student.class', 'class')
-  //           .where('user.id = :userId', { userId: userId })
-  //           .getOne();
-
-  //       if (student) {
-  //           const className = student.class.id;
-
-  //           if (!topAttendeesByClass[className]) {
-  //               topAttendeesByClass[className] = [];
-  //           }
-
-  //           // Find the corresponding absent count for this student
-  //           const absentAttendee = topAbsentAttendees.find(a => a.userId === userId);
-  //           const absentCount = absentAttendee ? absentAttendee.count : 0;
-
-  //           topAttendeesByClass[className].push({
-  //               userId: userId,
-  //               firstName: student.firstName,
-  //               lastName: student.lastName,
-  //               gender: student.gender,
-  //               rollNo: student.rollNo,
-  //               guardianName: student.guardianName,
-  //               guardianPhone: student.guardianPhone,
-  //               address: student.address,
-  //               presentAttendanceCount: attendee.count,
-  //               absentAttendanceCount: absentCount,
-  //           });
-  //       }
-  //   }
-
-  //   return topAttendeesByClass;
-  // }
-  
   async findOneByUsername(username: string){
     return this.studentRepository
       .createQueryBuilder('student')
@@ -227,9 +147,6 @@ export class StudentService {
       .getOne();
   }
   
-
-
-
   async update(id:string, data:CreateStudentDto) {
     const { class: className, ...restData } = data;
     const classEntity = await this.classService.findOneByClassName(className);
@@ -247,7 +164,6 @@ export class StudentService {
       .execute();
   }
   
-
   async remove(id: string) {
     await this.studentRepository.delete(id);
   }

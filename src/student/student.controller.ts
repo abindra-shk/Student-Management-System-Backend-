@@ -69,10 +69,10 @@ export class StudentController {
     return this.studentService.findOne(id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateStudentDto: CreateStudentDto) {
-  //   return this.studentService.update(id, updateStudentDto);
-  // }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateStudentDto: CreateStudentDto) {
+    return this.studentService.update(id, updateStudentDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
