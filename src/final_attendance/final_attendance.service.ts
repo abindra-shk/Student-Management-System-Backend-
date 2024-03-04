@@ -266,6 +266,14 @@ async getTotalAttendanceByClassAndDate() {
   return totalAttendance;
 }
 
+async getFinalAttendanceByStudentId(studentId: string) {
+  return this.finalAttendanceRepository
+    .createQueryBuilder('finalAttendance')
+    .leftJoinAndSelect('finalAttendance.student', 'student')
+    .where('student.id = :studentId', { studentId })
+    .getMany();
+}
+
 }
 
 
