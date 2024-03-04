@@ -85,38 +85,87 @@ export class MarksService {
     return this.marksRepository.save(mark);
 }
 
-  async createAll(createMarkDtos: CreateMarkDto[]) {
-    const marks: Marks[] = [];
+  // async createAll(createMarkDtos: CreateMarkDto[]) {
+  //   const marks: Marks[] = [];
 
+  //   for (const createMarkDto of createMarkDtos) {
+  //     const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
+
+
+  //     const student = await this.studentService.findOne(student_id);
+  //     if (!student) {
+  //       throw new Error(`Student with ID ${student_id} not found`);
+  //     }
+
+  //     const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
+  //     if (!subject) {
+  //       throw new Error(`Subject '${subjectName}' not found for class ${classId}`);
+  //     }
+      
+  //     const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+
+  //     const mark = this.marksRepository.create({
+  //       student,
+  //       subject,
+  //       academicYear,
+  //       marksObtained,
+  //       result,
+  //     });
+
+  //     marks.push(mark);
+  //   }
+
+  //   return this.marksRepository.save(marks);
+  // }
+  async createAll(createMarkDtos: CreateMarkDto[]) {
+    const response = [];
+  
     for (const createMarkDto of createMarkDtos) {
       const { student_id, subjectName, classId, academicYear, marksObtained } = createMarkDto;
-
-
+  
       const student = await this.studentService.findOne(student_id);
       if (!student) {
         throw new Error(`Student with ID ${student_id} not found`);
       }
-
+  
       const subject = await this.subjectService.findBySubjectNameAndClassId(subjectName, classId);
       if (!subject) {
         throw new Error(`Subject '${subjectName}' not found for class ${classId}`);
       }
-      
-      const result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
-
-      const mark = this.marksRepository.create({
-        student,
-        subject,
-        academicYear,
-        marksObtained,
-        result,
+  
+      let existingMark = await this.marksRepository.findOne({
+        where: {
+          student: student,
+          subject: subject,
+          academicYear: academicYear
+        }
       });
-
-      marks.push(mark);
+  
+      let result: ResultEnum;
+      if (existingMark) {
+        existingMark.marksObtained = marksObtained;
+        result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+        existingMark.result = result;
+        await this.marksRepository.save(existingMark);
+        response.push({ message: 'Record updated', data: existingMark });
+      } else {
+        result = marksObtained >= subject.passMarks ? ResultEnum.PASS : ResultEnum.FAIL;
+        const mark = this.marksRepository.create({
+          student,
+          subject,
+          academicYear,
+          marksObtained,
+          result,
+        });
+        await this.marksRepository.save(mark);
+        response.push({ message: 'Record created', data: mark });
+      }
     }
-
-    return this.marksRepository.save(marks);
+  
+    return response;
   }
+  
+  
   
   async findMarksByStudentId(studentId: string) {
     const marks = await this.marksRepository.createQueryBuilder("mark")
@@ -289,7 +338,8 @@ export class MarksService {
       .addSelect('SUM(marks.marksObtained)', 'totalMarks')
       .addSelect('SUM(subject.fullMarks)', 'totalFullMarks')
       .where('marks.student = :studentId', { studentId })
-      .groupBy('marks.academicYear');
+      .groupBy('marks.academicYear')
+      .orderBy('marks.academicYear', 'ASC');
 
     const marksByYear = await marksByYearQuery.getRawMany();
 
@@ -301,20 +351,25 @@ export class MarksService {
     return percentages;
   }
 
-  async passPercentageBySubject(){
-    return this.marksRepository
-      .createQueryBuilder('mark')
-      .select('subject.id', 'subjectId')
-      .addSelect('subject.subjectName', 'subjectName')
-      .addSelect('mark.academicYear', 'academicYear')
-      .addSelect('COUNT(mark.id)', 'totalStudents')
-      .addSelect('SUM(CASE WHEN mark.result = :pass THEN 1 ELSE 0 END)', 'passedStudents')
-      .addSelect('ROUND((SUM(CASE WHEN mark.result = :pass THEN 1 ELSE 0 END) / COUNT(mark.id)) * 100, 2)', 'passPercentage')
-      .leftJoin('mark.subject', 'subject')
-      .groupBy('subject.id, subject.subjectName, mark.academicYear')
-      .setParameter('pass', 'PASS')
+  async passPercentageBySubject(): Promise<any> {
+    const passPercentageResults = await this.marksRepository
+      .createQueryBuilder('marks')
+      .select([
+        'marks.subjectId',
+        'subject.subjectName',
+        'ARRAY_AGG(DISTINCT marks.academicYear) as academicYears',
+        'ARRAY_AGG(COUNT(*)) as totalStudents',
+        'ARRAY_AGG(CASE WHEN marks.result = \'PASS\' THEN 1 ELSE 0 END) as passedStudents',
+        'ARRAY_AGG(CASE WHEN marks.result = \'PASS\' THEN 1 ELSE 0 END) / COUNT(*) * 100 as passPercentage',
+      ])
+      .leftJoin('marks.subject', 'subject')
+      .groupBy('marks.subjectId, subject.subjectName')
+      .orderBy('marks.subjectId')
       .getRawMany();
+
+    return passPercentageResults;
   }
+
 
   async findAll(){
     return this.marksRepository.find();
