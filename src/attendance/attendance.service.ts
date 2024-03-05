@@ -6,6 +6,7 @@ import { Repository } from 'typeorm';
 import { CreateAttendanceLogDto } from './dto/create-attendance.dto';
 import { AttendanceLog } from './entities/attendance.entity';
 import { StudentService } from 'src/student/student.service';
+import { getConnection } from 'typeorm';
 
 
 @Injectable()
@@ -39,18 +40,32 @@ export class AttendanceLogService {
       // Handle student not found
       return null;
     }
-
+  
     // Retrieve username from the student's user entity
     const { user } = student;
     const username = user ? user.username : null;
-
+  
     // Query attendance log records based on the retrieved username
-    return this.attendanceLogRepository
-    .createQueryBuilder('attendanceLog')
-    .where('attendanceLog.username = :username', { username })
-    .orderBy('attendanceLog.date', 'DESC')
-    .getMany();
+    const attendanceLogs = await this.attendanceLogRepository
+      .createQueryBuilder('attendanceLog')
+      .select([
+        'attendanceLog.username AS username',
+        'TO_CHAR(attendanceLog.date, \'YYYY-MM-DD\') AS date',
+        `TO_CHAR(attendanceLog.entrytime, 'YYYY-MM-DD HH24:MI:SS.US') AS entryTime`,
+        `TO_CHAR(attendanceLog.exittime, 'YYYY-MM-DD HH24:MI:SS.US') AS exitTime`
+      ])
+      .where('attendanceLog.username = :username', { username })
+      .orderBy('attendanceLog.date', 'DESC')
+      .getRawMany();
+  
+    return attendanceLogs;
   }
+  
+
+
+  
+  
+  
 
   async findByUsername(username: string) {
     return this.attendanceLogRepository
